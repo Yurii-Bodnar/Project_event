@@ -2,14 +2,14 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://yurii-bodnar.github.io/Project_event/",
+  "homepage": "https://yurii-bodnar.github.io/Project_event",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /Project_event/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yurii-Bodnar/Project_event.git"
+    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
