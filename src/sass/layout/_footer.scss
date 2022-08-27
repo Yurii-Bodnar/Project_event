@@ -1,0 +1,20 @@
+.footer__text{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: calc(20/16);
+    text-align: center;
+    color: var(--input-footer-text-colr);
+    margin-bottom: 40px;
+    &--red {
+        color: #FF0000;
+    }
+
+    @media screen and (max-width: 768px){
+        font-size: 14px;
+        line-height: calc(17/14);
+        margin-bottom: 25px;
+        max-width: 250px;
+        margin-right: auto; 
+        margin-left: auto;
+    }
+}
