@@ -1,0 +1,129 @@
+<div class="backdrop-is-hidden" data-modal>
+  <div class="modal">
+    <button type="button" class="close-btn">
+      <svg class="close-icon" width="25" height="25">
+        <use href="./images/sprite.svg#icon-close"></use>
+      </svg>
+    </button>
+
+    <picture>
+      <source
+        srcset="
+          ./images/mobile/ltl-img1x.png 1x,
+          ./images/mobile/ltl-img2x.png 2x
+        "
+        media="(min-width: 320px)"
+      />
+      <source
+        srcset="
+          ./images/tablet/ltl-img1x.png 1x,
+          ./images/tablet/ltl-img2x.png 2x
+        "
+        media="(min-width: 768px)"
+      />
+      <source
+        srcset="
+          ./images/desktop/ltl-img1x.png 1x,
+          ./images/desktop/ltl-img2x.png 2x
+        "
+        media="(min-width: 1280px)"
+      />
+      <img
+        class="ltl-img"
+        src="./images/desktop/ltl-img1x.png"
+        alt="little-img"
+      />
+    </picture>
+    <div class="parts">
+      <div class="parts__first">
+        <picture>
+          <source
+            srcset="
+              ./images/tablet/big-img1x.jpg 1x,
+              ./images/tablet/big-img2x.jpg 2x
+            "
+            media="(min-width: 768px)"
+          />
+          <source
+            srcset="
+              ./images/desktop/big-img1x.jpg 1x,
+              ./images/desktop/big-img2x.jpg 2x
+            "
+            media="(min-width: 1280px)"
+          />
+          <img
+            class="big-img"
+            src="./images/desktop/big-img1x.jpg"
+            alt="big-img"
+          />
+        </picture>
+      </div>
+      <div class="paers__second">
+        <ul class="modal__list list">
+          <li class="modal__item">
+            <h2 class="modal__title">INFO</h2>
+            <p class="modal__txt">
+              Atlas Weekend is the largest music festival in Ukraine. More than
+              200 artists will create a proper music festival atmosphere on 10
+              stages
+            </p>
+          </li>
+          <li class="modal__item">
+            <h2 class="modal__title">WHEN</h2>
+            <p class="modal__txt">
+              2021-06-09 <br />
+              20:00 (Kyiv/Ukraine)
+            </p>
+          </li>
+          <li class="modal__item">
+            <h2 class="modal__title">WHERE</h2>
+            <p class="modal__txt">Kyiv, Ukraine <br />VDNH</p>
+          </li>
+          <li class="modal__item">
+            <h2 class="modal__title">WHO</h2>
+            <p class="modal__txt">The Black Eyed Peas</p>
+          </li>
+
+          <li class="modal__item">
+            <h2 class="modal__title buy__title">PRICES</h2>
+            <ul class="buy__list list">
+              <li class="buy__item">
+                <ul class="tickets__list">
+                  <li class="tickets__item">
+                    <svg class="buy__icon" width="29" height="20">
+                      <use href="./images/sprite.svg#icon-ticket1"></use>
+                    </svg>
+                  </li>
+                  <li class="tickets__item">
+                    <p class="modal__txt">Standart 300-500 UAH</p>
+                  </li>
+                </ul>
+              </li>
+              <li class="buy__item">
+                <a class="buy__link link" href="">BUY TICKETS</a>
+              </li>
+
+              <li class="buy__item">
+                <ul class="tickets__list">
+                  <li class="tickets__item">
+                    <svg class="buy__icon" width="29" height="20">
+                      <use href="./images/sprite.svg#icon-ticket1"></use>
+                    </svg>
+                  </li>
+                  <li class="tickets__item">
+                    <p class="modal__txt">VIP 1000-1500 UAH</p>
+                  </li>
+                </ul>
+              </li>
+              <li class="buy__item">
+                <a class="buy__link link" href="">BUY TICKETS</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <button type="button" class="author__button">MORE FROM THIS AUTHOR</button>
+  </div>
+</div>
