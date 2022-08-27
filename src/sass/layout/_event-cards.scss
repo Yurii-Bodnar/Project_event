@@ -33,12 +33,12 @@ p {
   column-gap: 40px;
 
   @media screen and (min-width: 768px) {
-    row-gap: 30px;
+    row-gap: 32px;
+    column-gap: 32px;
   }
 
   @media screen and (min-width: 1200px) {
     row-gap: 40px;
-    column-gap: 32px;
     margin-bottom: 60px;
   }
 }
@@ -47,9 +47,9 @@ p {
   flex-basis: 100%;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  //   @media screen and (min-width: 768px) {
-  //     flex-basis: calc((100% - 30px) / 2);
-  //   }
+  @media screen and (min-width: 768px) {
+    flex-basis: calc((100% - 3 * 32px) / 4);
+  }
 
   @media screen and (min-width: 1200px) {
     flex-basis: calc((100% - 3 * 32px) / 4);
@@ -60,34 +60,64 @@ p {
     display: flex;
     flex-direction: column;
   }
-  &__img {
-    display: block;
-    margin-top: 19px;
-    height: 337px;
-    object-fit: cover;
-    border-radius: 50px 0px;
-  }
-
   &__img-wrapper {
     position: relative;
     height: 100%;
-    max-width: 267px;
+
+    @media screen and (min-width: 768px) {
+      max-width: 152px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      max-width: 267px;
+    }
+  }
+  &__img {
+    display: block;
+    object-fit: cover;
+    border-radius: 50px 0px;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 9px;
+      height: 178px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      margin-top: 19px;
+      height: 337px;
+    }
   }
 
   &__border-elem {
     position: absolute;
     top: 0;
-    left: 61px;
+
     z-index: -1;
-    width: 227px;
-    height: 213px;
-    // margin-left: 61px;
     border: 1px solid rgba(220, 86, 197, 0.3);
     border-radius: 50px 0px;
+    @media screen and (min-width: 768px) {
+      left: 32px;
+      width: 120px;
+      height: 112px;
+    }
+
+    @media screen and (min-width: 1200px) {
+      left: 61px;
+      width: 227px;
+      height: 213px;
+    }
   }
 
   //   .event-card:hover & {
   //     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  //   }
+
+  //  @media screen and (min-width: 768px) {
+
+  //   }
+
+  //   @media screen and (min-width: 1200px) {
+
   //   }
 
   &__descr {
@@ -103,6 +133,7 @@ p {
     font-size: 16px;
     line-height: 20px;
     color: var(--secondary-text-color);
+    text-align: center;
   }
   &__date {
     color: var(--primery-text-color);
