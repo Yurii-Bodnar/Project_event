@@ -2,7 +2,7 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://github.com/Yurii-Bodnar/Project_event",
+  "homepage": "https://yurii-bodnar.github.io/Project_event/",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /Project_event/"
