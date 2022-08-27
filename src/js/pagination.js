@@ -4,8 +4,8 @@ const container = document.getElementById('tui-pagination-container');
 
 const options = {
   // below default value of options
-  totalItems: 100,
-  itemsPerPage: 10,
+  totalItems: 464,
+  itemsPerPage: 16,
   visiblePages: 5,
   page: 1,
   centerAlign: false,
