@@ -1,12 +1,14 @@
 :root {
-    --primery-text-color: #FFFFFF;
-    --secondary-text-color: #DC56C5;
-    --input-footer-text-colr: #939393;
-    --button-color:#4C00FE;
-    --modal-text-bodyBG-color: #0E0E0E;
-    --modal-background-color-btn:#FFF2FD;
+  --primery-text-color: #ffffff;
+  --secondary-text-color: #dc56c5;
+  --input-footer-text-colr: #939393;
+  --button-color: #4c00fe;
+  --modal-text-bodyBG-color: #0e0e0e;
+  --modal-background-color-btn: #fff2fd;
 
-
-    --main-font:'Montserrat', sans-serif;
-
+  --main-font: 'Montserrat', sans-serif;
 }
+
+$mobile: 320px;
+$tablet: 768px;
+$desktop: 1200px;
