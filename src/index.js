@@ -33,3 +33,4 @@ function renderCards() {
 console.log(renderCards());
 import './js/pagination';
 import './js/preloader';
+import './js/form';
