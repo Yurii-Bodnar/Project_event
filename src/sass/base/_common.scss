@@ -27,8 +27,8 @@ body {
     }
   }
   @include media(tablet) {
-    background-size: 100%, auto;
-    background: no-repeat url(../images/body-img-tb.jpg);
+    // background-size: 100%, auto;
+    background: no-repeat url(../images/tablet/1\ -\ home\ tablet.png);
     // no-repeat url(../images/noise-body-tb.png),
     // no-repeat 420px 750px url(../images/Ellipse-4.png),
     // no-repeat 25px 750px url(../images/Ellipse-2-tb.png),
@@ -41,15 +41,15 @@ body {
     // background-size: 768px, 364px;
 
     @include media(retina) {
-      background-image: url(../images/body-img-tb-2x.jpg),
+      background-image: url(../images/tablet/1\ -\ home\ tablet@2x.png),
         url(../images/bg-body-tb-2x.png);
     }
   }
 
   @include media(desktop) {
-    background-size: 100%, auto;
+    // background-size: 100%, auto;
     background-color: #212121;
-    background: no-repeat url(../images/body-img-dt.jpg);
+    background: no-repeat url(../images/desktop/1\ -\ home.png);
     // no-repeat url(../images/noise-body.png),
     // no-repeat 916px 460px url(../images/Ellipse-4.png),
     // no-repeat 25px 750px url(../images/Ellipse-2.png),
@@ -61,7 +61,7 @@ body {
     // background-color: #212121;
 
     @include media(retina) {
-      background-image: url(../images/body-img-dt-2x.jpg),
+      background-image: url(../images/desktop/1\ -\ home@2x.png),
         url(../images/bg-body@2x.png);
     }
 
