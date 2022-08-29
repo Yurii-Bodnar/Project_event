@@ -48,7 +48,7 @@ function addListenerLinks(){
     refs.modal.classList.toggle("is-hidden");
   }
 
-  document.addEventListener("keydown", removeEscape)
+//   document.addEventListener("keydown", removeEscape)
 
     // function removeEscape(even) { 
     //     if (even.code !== "Escape") {
@@ -60,7 +60,7 @@ function addListenerLinks(){
     //     }
     
     // }
-})();
+// })();
 
 
 
