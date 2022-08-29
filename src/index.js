@@ -1,9 +1,13 @@
 import fetchEventCards from './js/fetch-cards';
 import './js/pagination';
 import './js/preloader';
+
+import './js/back-to-top';
+
 import './js/form';
 import './js/modal';
 // import cardById from './js/fetch-card-details';
+
 
 
 
