@@ -19,6 +19,7 @@
   font-size: 0;
   margin-top: 60px;
   margin-bottom: 60px;
+  color: var(--primery-text-color);
 }
 
 .tui-pagination .tui-page-btn {
@@ -51,7 +52,7 @@
 }
 
 .tui-pagination .tui-is-selected:hover {
-  color: var(--primery-text-color);
+  color: var(--modal-text-bodyBG-color);
 }
 
 .tui-pagination .tui-first-child.tui-is-selected,
@@ -82,7 +83,7 @@
 .tui-pagination .tui-prev-is-ellip,
 .tui-pagination .tui-next-is-ellip {
   overflow: hidden;
-  height: 26px;
+  height: 30px;
   padding: 0;
   font-size: 16px;
   line-height: 1.22;
@@ -105,7 +106,7 @@
 .tui-pagination .tui-ico-ellip {
   background: url('../images/arr.png') no-repeat 0 0;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
   font-size: 0px;
 }
 
