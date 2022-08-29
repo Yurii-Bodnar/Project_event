@@ -42,8 +42,15 @@ function renderCards() {
 console.log(renderCards());
 import './js/pagination';
 import './js/preloader';
+
+
+import './js/form';
+
+import './js/modal';
+
 import './js/modal';
 import './js/form';
 
 renderCards();
+
 
