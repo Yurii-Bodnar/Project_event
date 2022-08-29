@@ -26,7 +26,12 @@
 // }
 
 
-
+function addListenerLinks(){
+  const eventCards = document.querySelectorAll(".event-card__link")
+  for(let eventCard of eventCards) {
+    eventCard = document.addEventListener("click",onOpenModal)
+  };
+}
 
 
 (() => {
