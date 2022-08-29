@@ -26,27 +26,28 @@
 // }
 
 
-function addListenerLinks(){
-  const eventCards = document.querySelectorAll(".event-card__link")
-  for(let eventCard of eventCards) {
-    eventCard = document.addEventListener("click",onOpenModal)
-  };
-}
+// function addListenerLinks(){
+//   const eventCards = document.querySelectorAll(".event-card__link")
+//   for(let eventCard of eventCards) {
+//     eventCard = document.addEventListener("click",onOpenModal)
+//   };
+// }
 
 
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector("[data-modal-open]"),
-    closeModalBtn: document.querySelector("[data-modal-close]"),
-    modal: document.querySelector("[data-modal]"),
-  };
+// (() => {
+//   const refs = {
+//     openModalBtn: document.querySelector("[data-modal-open]"),
+//     closeModalBtn: document.querySelector("[data-modal-close]"),
+//     modal: document.querySelector("[data-modal]"),
+//   };
 
-  refs.openModalBtn.addEventListener("click", toggleModal);
-  refs.closeModalBtn.addEventListener("click", toggleModal);
+//   refs.openModalBtn.addEventListener("click", toggleModal);
+//   refs.closeModalBtn.addEventListener("click", toggleModal);
 
-  function toggleModal() {
-    refs.modal.classList.toggle("is-hidden");
-  }
+//   function toggleModal(event) {
+//     refs.modal.classList.toggle("is-hidden");
+//     console.log(event)
+//   }
 
 //   document.addEventListener("keydown", removeEscape)
 
@@ -60,7 +61,7 @@ function addListenerLinks(){
     //     }
     
     // }
-})();
+// })();
 
 
 
@@ -112,3 +113,40 @@ function addListenerLinks(){
 //     document.querySelector(".modal.is-visible").classList.remove(isVisible);
 //   }
 // });
+
+/*
+(() => {
+  const refs = {
+    openModalBtn: document.querySelector("[data-modal-open]"),
+    closeModalBtn: document.querySelector("[data-modal-close]"),
+    modal: document.querySelector("[data-modal]"),
+  };
+
+  refs.openModalBtn.addEventListener("click", onRenderModal);
+  refs.closeModalBtn.addEventListener("click", toggleModal);
+
+  function toggleModal() {
+    refs.modal.classList.toggle("is-hidden");
+
+  }
+
+  function onRenderModal(event) {
+    refs.modal.classList.toggle("is-hidden");
+    
+
+    // if (event.target.nodeName === "LI") {
+    //   //Якщо клацнули по карточці Юзера
+
+    //   //Отримуємо айді цього юзера
+    //   let idUser = event.target.dataset["id"];
+
+
+    //   // Відображаем пости обраного юзера
+    //   if (event.ctrlKey) updateListAlbums(idUser);
+    //   else updateListPosts(idUser);
+
+    // }
+    // console.log(data-id);
+    // console.log(event.target.dataset.id);
+  }
+})();*/
