@@ -66,14 +66,14 @@ function renderCards() {
     addListenerLinks();
   });
 }
-const form = document.querySelector(".search-form")
+// const form = document.querySelector(".search-form")
 
-form.addEventListener("submit", onFormSubmit)
+// form.addEventListener("submit", onFormSubmit)
 
-function onFormSubmit(e) {
-  e.preventDefault();
-  countryCode = form.searchQuery.value;
-fetchEventCards();
-  renderCards();
+// function onFormSubmit(e) {
+//   e.preventDefault();
+//   countryCode = form.searchQuery.value;
+// fetchEventCards();
+//   renderCards();
   
-}
+// }

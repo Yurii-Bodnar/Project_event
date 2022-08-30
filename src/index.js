@@ -32,14 +32,15 @@ export function renderCards() {
                 alt=""
                 class="event-card__img"
               />
+              
             </div>
             <div class="event-card__descr">
               <h2 class="event-card__title">${event.name}</h2>
               <p class="event-card__date">${event.dates.start.localDate}</p>
               <p class="event-card__location">
-               <svg class="event-card__location-icon" width="7" height="10">
-                    <use href="./images/location.svg"></use>
-             </svg>
+              <svg width="8" height="10" viewBox="0 0 8 10" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.77344 0C1.69278 0 0 1.55933 0 3.47595C0 5.88495 3.77715 10 3.77715 10C3.77715 10 7.54687 5.76648 7.54687 3.47595C7.54687 1.55933 5.85416 0 3.77344 0ZM4.91196 4.49371C4.59803 4.78284 4.18577 4.92743 3.77344 4.92743C3.36118 4.92743 2.94878 4.78284 2.63498 4.49371C2.00718 3.91547 2.00718 2.97455 2.63498 2.39624C2.93897 2.11609 3.34335 1.96179 3.77344 1.96179C4.20352 1.96179 4.60783 2.11615 4.91196 2.39624C5.53976 2.97455 5.53976 3.91547 4.91196 4.49371Z" fill="white"/>
+</svg>
               <span>${event.dates.timezone}</span></p>
             </div>
           </a>
@@ -118,25 +119,26 @@ function renderModal(e) {
               <li class="buy__item">
                 <ul class="tickets__list">
                   <li class="tickets__item">
-                    <svg class="buy__icon" width="29" height="20">
-                      <use href="./images/sprite.svg#icon-ticket1"></use>
-                    </svg>
+                    <svg width="24px" height="20px" viewBox="0 0 29 21" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.222.833H0v19.334h3.222V.833ZM11.327.833H8.104v19.334h3.223V.833ZM16.209.833h-3.222v19.334h3.222V.833ZM29 .833h-4.785v19.334H29V.833ZM6.444.833H4.882v19.334h1.562V.833ZM19.333.833h-1.562v19.334h1.562V.833ZM22.555.833h-1.562v19.334h1.563V.833Z" fill="#0E0E0E"/>
+</svg>
                   </li>
                   <li class="tickets__item">
-                    <p class="modal__txt">${event.priceRanges[0].type} ${event.priceRanges[0].min} - ${event.priceRanges[0].max} ${event.priceRanges[0].currency}</p>
+                    <p class="modal__txt">
+                    ${event.priceRanges[0].type} ${event.priceRanges[0].min} - ${event.priceRanges[0].max} ${event.priceRanges[0].currency}</p>
                   </li>
                 </ul>
               </li>
               <li class="buy__item">
-                <a class="buy__link link" href="">BUY TICKETS</a>
+                <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
               </li>
 
               <li class="buy__item">
                 <ul class="tickets__list">
                   <li class="tickets__item">
-                    <svg class="buy__icon" width="29" height="20">
-                      <use href="./images/sprite.svg#icon-ticket1"></use>
-                    </svg>
+                    <svg width="24px" height="20px" viewBox="0 0 29 21" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
+ <path d="M3.222.833H0v19.334h3.222V.833ZM11.327.833H8.104v19.334h3.223V.833ZM16.209.833h-3.222v19.334h3.222V.833ZM29 .833h-4.785v19.334H29V.833ZM6.444.833H4.882v19.334h1.562V.833ZM19.333.833h-1.562v19.334h1.562V.833ZM22.555.833h-1.562v19.334h1.563V.833Z" fill="#0E0E0E"/>
+</svg>
                   </li>
                   <li class="tickets__item">
                     <p class="modal__txt">VIP 1000-1500 UAH</p>
@@ -144,7 +146,7 @@ function renderModal(e) {
                 </ul>
               </li>
               <li class="buy__item">
-                <a class="buy__link link" href="">BUY TICKETS</a>
+                <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
               </li>
             </ul>
           </li>
@@ -181,9 +183,9 @@ async function fetchEventByAuthor() {
               <h2 class="event-card__title">${event.name}</h2>
               <p class="event-card__date">${event.dates.start.localDate}</p>
               <p class="event-card__location">
-               <svg class="event-card__location-icon" width="7" height="10">
-                    <use href="./images/location.svg"></use>
-             </svg>
+               <svg width="8" height="10" viewBox="0 0 8 10" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.77344 0C1.69278 0 0 1.55933 0 3.47595C0 5.88495 3.77715 10 3.77715 10C3.77715 10 7.54687 5.76648 7.54687 3.47595C7.54687 1.55933 5.85416 0 3.77344 0ZM4.91196 4.49371C4.59803 4.78284 4.18577 4.92743 3.77344 4.92743C3.36118 4.92743 2.94878 4.78284 2.63498 4.49371C2.00718 3.91547 2.00718 2.97455 2.63498 2.39624C2.93897 2.11609 3.34335 1.96179 3.77344 1.96179C4.20352 1.96179 4.60783 2.11615 4.91196 2.39624C5.53976 2.97455 5.53976 3.91547 4.91196 4.49371Z" fill="white"/>
+</svg>
               <span>${event.dates.timezone}</span></p>
             </div>
           </a>
