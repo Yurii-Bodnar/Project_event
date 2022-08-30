@@ -12,6 +12,8 @@
   display: flex;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 4px 10px 14px rgba(220, 86, 197, 0.91);
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 
   margin-top: 40px;
 
@@ -24,5 +26,16 @@
     margin-top: 80px;
     font-size: 18px;
     max-width: 250px;
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
   }
 }

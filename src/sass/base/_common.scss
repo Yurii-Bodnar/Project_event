@@ -21,6 +21,7 @@ body {
     background-color: var(--modal-text-bodyBG-color);
     background-image: url(../images/body-img-mb.jpg);
     background-repeat: no-repeat;
+    background-size: cover;
 
     background-position: center top;
     @include media(retina) {
@@ -30,6 +31,7 @@ body {
   @include media(tablet) {
     background: no-repeat url(../images/tablet/1\ -\ home\ tablet.png);
     background-position: center top;
+    background-size: cover;
 
     @include media(retina) {
       background-image: url(../images/tablet/1\ -\ home\ tablet@2x.png);
@@ -40,6 +42,7 @@ body {
     background-color: #212121;
     background: no-repeat url(../images/desktop/1\ -\ home.png);
     background-position: center top;
+    background-size: cover;
 
     @include media(retina) {
       background-image: url(../images/desktop/1\ -\ home@2x.png);

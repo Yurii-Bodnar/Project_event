@@ -1,35 +1,67 @@
 
-import axios from 'axios';
+// import axios from 'axios';
 
-// const cardList = document.querySelector('.card-box');
+// // const cardList = document.querySelector('.card-box');
 
-let page = 1;
-let size = 1;
-const baseUrl = 'https://app.ticketmaster.com/discovery/v2/events.json';
-const key = 'gq43zGRtwYd9WTdGGX7KlpGS3X1lGFUk';
+// let page = 1;
+// let size = 1;
+// const baseUrl = 'https://app.ticketmaster.com/discovery/v2/events.json';
+// const key = 'gq43zGRtwYd9WTdGGX7KlpGS3X1lGFUk';
 
-export default async function fetchEventCards(name) {
-  let options = {
-    baseURL: `${baseUrl}?apikey=${key}&size=${size}`,
-    method: 'GET',
-    params: {
-      page: page,
-      keyword: name,
-    },
-  };
-  try {
-    const response = await axios(options);
-    return response.data._embedded.events;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-
+// export default async function fetchEventCards(name) {
+//   let options = {
+//     baseURL: `${baseUrl}?apikey=${key}&size=${size}`,
+//     method: 'GET',
+//     params: {
+//       page: page,
+//       keyword: name,
+//     },
+//   };
+//   try {
+//     const response = await axios(options);
+//     return response.data._embedded.events;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 
+// function addListenerLinks(){
+//   const eventCards = document.querySelectorAll(".event-card__link")
+//   for(let eventCard of eventCards) {
+//     eventCard = document.addEventListener("click",onOpenModal)
+//   };
+// }
 
 
+// (() => {
+//   const refs = {
+//     openModalBtn: document.querySelector("[data-modal-open]"),
+//     closeModalBtn: document.querySelector("[data-modal-close]"),
+//     modal: document.querySelector("[data-modal]"),
+//   };
+
+//   refs.openModalBtn.addEventListener("click", toggleModal);
+//   refs.closeModalBtn.addEventListener("click", toggleModal);
+
+//   function toggleModal(event) {
+//     refs.modal.classList.toggle("is-hidden");
+//     console.log(event)
+//   }
+
+//   document.addEventListener("keydown", removeEscape)
+
+    // function removeEscape(even) { 
+    //     if (even.code !== "Escape") {
+    //         return
+    //     }
+    //     else {
+    //         refs.modal.classList.toggle("is-hidden") 
+    //         document.removeEventListener("keydown", removeEscape)
+    //     }
+    
+    // }
+// })();
 
 
 
@@ -42,7 +74,7 @@ export default async function fetchEventCards(name) {
 
 // import * as basicLightbox from 'basiclightbox'
 
-// document.querySelector('a.event-card__link').onclick = () => {
+// document.querySelector('.event-card__link').onclick = () => {
 
 // 	basicLightbox.create(`
 // 		<h1>HTML</h1>
@@ -81,3 +113,40 @@ export default async function fetchEventCards(name) {
 //     document.querySelector(".modal.is-visible").classList.remove(isVisible);
 //   }
 // });
+
+/*
+(() => {
+  const refs = {
+    openModalBtn: document.querySelector("[data-modal-open]"),
+    closeModalBtn: document.querySelector("[data-modal-close]"),
+    modal: document.querySelector("[data-modal]"),
+  };
+
+  refs.openModalBtn.addEventListener("click", onRenderModal);
+  refs.closeModalBtn.addEventListener("click", toggleModal);
+
+  function toggleModal() {
+    refs.modal.classList.toggle("is-hidden");
+
+  }
+
+  function onRenderModal(event) {
+    refs.modal.classList.toggle("is-hidden");
+    
+
+    // if (event.target.nodeName === "LI") {
+    //   //Якщо клацнули по карточці Юзера
+
+    //   //Отримуємо айді цього юзера
+    //   let idUser = event.target.dataset["id"];
+
+
+    //   // Відображаем пости обраного юзера
+    //   if (event.ctrlKey) updateListAlbums(idUser);
+    //   else updateListPosts(idUser);
+
+    // }
+    // console.log(data-id);
+    // console.log(event.target.dataset.id);
+  }
+})();*/
