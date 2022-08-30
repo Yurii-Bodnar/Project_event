@@ -11,6 +11,7 @@ import toggleModal from './js/modal';
 let eventsData = [];
 
 const cardList = document.querySelector('.card-box');
+const byAuthorBtn = document.querySelector('.js-modal-author-btn');
 
 function renderCards() {
   fetchEventCards().then(events => {
