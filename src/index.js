@@ -24,7 +24,7 @@ function toggleModal() {
   modal.classList.toggle("is-hidden");
 }
 
-function renderCards() {
+export function renderCards() {
   fetchEventCards().then(events => {
     console.log(events)
     eventsData = events;
