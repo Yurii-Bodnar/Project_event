@@ -6,20 +6,11 @@ import './js/back-to-top';
 
 import './js/form';
 import './js/modal';
-// import cardById from './js/fetch-card-details';
-
-const cardList = document.querySelector('.card-box');
-const modal = document.querySelector('[data-modal]');
-const closeModalBtn = document.querySelector('[data-modal-close]');
-const byAuthorBtn = document.querySelector('.js-modal-author-btn');
+import toggleModal from './js/modal';
 
 let eventsData = [];
 
-closeModalBtn.addEventListener('click', toggleModal);
-
-function toggleModal() {
-  modal.classList.toggle('is-hidden');
-}
+const cardList = document.querySelector('.card-box');
 
 function renderCards() {
   fetchEventCards().then(events => {

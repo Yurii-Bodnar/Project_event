@@ -1,152 +1,22 @@
 
-// import axios from 'axios';
-
-// // const cardList = document.querySelector('.card-box');
-
-// let page = 1;
-// let size = 1;
-// const baseUrl = 'https://app.ticketmaster.com/discovery/v2/events.json';
-// const key = 'gq43zGRtwYd9WTdGGX7KlpGS3X1lGFUk';
-
-// export default async function fetchEventCards(name) {
-//   let options = {
-//     baseURL: `${baseUrl}?apikey=${key}&size=${size}`,
-//     method: 'GET',
-//     params: {
-//       page: page,
-//       keyword: name,
-//     },
-//   };
-//   try {
-//     const response = await axios(options);
-//     return response.data._embedded.events;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-
-// function addListenerLinks(){
-//   const eventCards = document.querySelectorAll(".event-card__link")
-//   for(let eventCard of eventCards) {
-//     eventCard = document.addEventListener("click",onOpenModal)
-//   };
-// }
-
-
-// (() => {
-//   const refs = {
-//     openModalBtn: document.querySelector("[data-modal-open]"),
-//     closeModalBtn: document.querySelector("[data-modal-close]"),
-//     modal: document.querySelector("[data-modal]"),
-//   };
-
-//   refs.openModalBtn.addEventListener("click", toggleModal);
-//   refs.closeModalBtn.addEventListener("click", toggleModal);
-
-//   function toggleModal(event) {
-//     refs.modal.classList.toggle("is-hidden");
-//     console.log(event)
-//   }
-
-//   document.addEventListener("keydown", removeEscape)
-
-    // function removeEscape(even) { 
-    //     if (even.code !== "Escape") {
-    //         return
-    //     }
-    //     else {
-    //         refs.modal.classList.toggle("is-hidden") 
-    //         document.removeEventListener("keydown", removeEscape)
-    //     }
-    
-    // }
-// })();
+const modal = document.querySelector("[data-modal]");
+const closeModalBtn = document.querySelector("[data-modal-close]");
+const backdrop = document.querySelector(".js-modal-backdrop")
+const modalContainer = document.querySelector(".modal")
 
 
 
+closeModalBtn.addEventListener("click", toggleModal);
+backdrop.addEventListener("click", backdropCloseModal)
 
+export default function toggleModal() {
+    modal.classList.toggle("is-hidden");
+}
 
-
-
-
-
-
-// import * as basicLightbox from 'basiclightbox'
-
-// document.querySelector('.event-card__link').onclick = () => {
-
-// 	basicLightbox.create(`
-// 		<h1>HTML</h1>
-// 		<p>HTML inside a lightbox.</p>
-// 	`).show()
-
-// }
-
-
-// const openEl = document.querySelector(".event-card");
-// const closeEl = document.querySelectorAll("[data-close]");
-// const isVisible = "is-visible";
-
-
-//   openEl.addEventListener("click", function() {
-//     const modalId = this.dataset.open;
-//     document.getElementById(modalId).classList.add(isVisible);
-//   });
-
-
-
-//   closeEl.addEventListener("click", function() {
-//     this.parentElement.parentElement.parentElement.classList.remove(isVisible);
-//   });
-
-
-// document.addEventListener("click", e => {
-//   if (e.target == document.querySelector(".modal.is-visible")) {
-//     document.querySelector(".modal.is-visible").classList.remove(isVisible);
-//   }
-// });
-
-// document.addEventListener("keyup", e => {
-//   // if we press the ESC
-//   if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
-//     document.querySelector(".modal.is-visible").classList.remove(isVisible);
-//   }
-// });
-
-/*
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector("[data-modal-open]"),
-    closeModalBtn: document.querySelector("[data-modal-close]"),
-    modal: document.querySelector("[data-modal]"),
-  };
-
-  refs.openModalBtn.addEventListener("click", onRenderModal);
-  refs.closeModalBtn.addEventListener("click", toggleModal);
-
-  function toggleModal() {
-    refs.modal.classList.toggle("is-hidden");
-
+function backdropCloseModal(e){
+  if(e.target === backdrop){
+    toggleModal()
   }
-
-  function onRenderModal(event) {
-    refs.modal.classList.toggle("is-hidden");
-    
-
-    // if (event.target.nodeName === "LI") {
-    //   //Якщо клацнули по карточці Юзера
-
-    //   //Отримуємо айді цього юзера
-    //   let idUser = event.target.dataset["id"];
-
-
-    //   // Відображаем пости обраного юзера
-    //   if (event.ctrlKey) updateListAlbums(idUser);
-    //   else updateListPosts(idUser);
-
-    // }
-    // console.log(data-id);
-    // console.log(event.target.dataset.id);
-  }
-})();*/
+  
+ 
+}
