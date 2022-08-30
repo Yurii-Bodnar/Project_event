@@ -3,7 +3,6 @@ import './js/pagination';
 import './js/preloader';
 
 import './js/back-to-top';
-
 import './js/form';
 import './js/modal';
 import toggleModal from './js/modal';
@@ -13,19 +12,19 @@ let eventsData = [];
 const cardList = document.querySelector('.card-box');
 const byAuthorBtn = document.querySelector('.js-modal-author-btn');
 
-function initializeEvents(){
-  fetchEventCards().then(events => renderCards(events) );
+function initializeEvents() {
+  fetchEventCards().then(events => renderCards(events));
 }
 
 export default function renderCards(events) {
-    eventsData = events;
-    // author = events.options.params._embedded.attractions.name;
+  eventsData = events;
+  // author = events.options.params._embedded.attractions.name;
 
-    const markup = events
-      .map(event => {
-        //eventsData[event.id] = event;
-        //console.log(eventsData);
-        return `<li class="event-card" data-id="${event.id}">
+  const markup = events
+    .map(event => {
+      //eventsData[event.id] = event;
+      //console.log(eventsData);
+      return `<li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
             <div class="event-card__img-wrapper">
               <span class="event-card__border-elem"></span>
@@ -46,10 +45,10 @@ export default function renderCards(events) {
             </div>
           </a>
         </li>`;
-      })
-      .join('');
-    cardList.innerHTML = markup;
-    addListenerLinks();
+    })
+    .join('');
+  cardList.innerHTML = markup;
+  addListenerLinks();
 }
 
 function addListenerLinks() {
@@ -153,7 +152,8 @@ function renderModal(e) {
   byAuthorBtn.addEventListener('click', fetchEventByAuthor);
 }
 // let authorNameArr = [];
-async function fetchEventByAuthor() {
+async function fetchEventByAuthor(e) {
+  e.preventDefault();
   toggleModal();
   const author = document.querySelector('.js-author');
   const eventAuthor = author.textContent;
@@ -162,9 +162,7 @@ async function fetchEventByAuthor() {
     .then(events =>
       events.filter(event => event._embedded.attractions[0].name == eventAuthor)
     )
-    .then(events => renderCards(events)
-    );
+    .then(events => renderCards(events));
 }
-
 
 initializeEvents();
