@@ -1,111 +1,81 @@
-// const form = document.querySelector(".search-form")
-// const cardList = document.querySelector(".card-box")
-// const inputEl = document.querySelector('div[name="choose-country"]')
-// import axios from 'axios';
+/// Відериття вікна з країнами у другому інпуті
 
+let select = function () {
+  let selectItem = document.querySelectorAll('.select__item');
+  let selectCountry = document.querySelectorAll('.select-country');
 
-// let page = 1;
-// let size = 16;
-// let currentCode = "";
+  selectCountry.forEach(e => {
+    e.addEventListener('click', selectToggle);
+  });
 
-// const baseUrl = 'https://app.ticketmaster.com/discovery/v2/events.json';
-// const key = 'gq43zGRtwYd9WTdGGX7KlpGS3X1lGFUk';
+  selectItem.forEach(e => {
+    e.addEventListener('click', selectChoose);
+  });
 
-// export default async function fetchEventCards(currentCode) {
-//   let options = {
-//     baseURL: `${baseUrl}?apikey=${key}&size=${size}`,
-//     method: 'GET',
-//     params: {
-//       page: page,
-//       keyword: currentCode,
-       
-//         // countryCode: currentCode,
-//     },
-//   };
-//   try {
-//       const response = await axios(options);
-//       const events = response.data._embedded.events;
-//       const countryEl = response.data._embedded.events[0]._embedded.venues[0].country.name;
-//       console.log(events);
-//     return countryEl
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+  function selectToggle() {
+    this.parentElement.classList.toggle('is-active');
+  }
+  function selectChoose() {
+    let text = this.innerText;
 
-// form.addEventListener("submit", renderCards)
+    let select = this.closest('.select');
+    let currentText = select.querySelector('.select-current-country');
+    currentText.innerText = text;
 
+    select.classList.remove('is-active');
+    console.dir();
+  }
+};
+select();
 
-// export function renderCards(e) {
-//   e.preventDefault();
-//   console.log(e.target.value);
-// currentCode = form.elements.value;
-//     console.log(currentCode)
-    
-//   fetchEventCards(currentCode).then(events => {
-//     console.log(events)
-//     //   eventsData = events;
-//     const markup = events
-//       .map(
-//         event => {
-//           //eventsData[event.id] = event;
-//           //console.log(eventsData);
-//           return `<li class="event-card" data-id="${event.id}">
-//           <a href="#" class="event-card__link" >
-//             <div class="event-card__img-wrapper">
-//               <span class="event-card__border-elem"></span>
-//               <img
-//                 src="${event.images[0].url}"
-//                 alt=""
-//                 class="event-card__img"
-//               />
-//             </div>
-//             <div class="event-card__descr">
-//               <h2 class="event-card__title">${event.name}</h2>
-//               <p class="event-card__date">${event.dates.start.localDate}</p>
-//               <p class="event-card__location">
-//                <svg class="event-card__location-icon" width="7" height="10">
-//                     <use href="./images/location.svg"></use>
-//              </svg>
-//               <span>${event.dates.timezone}</span></p>
-//             </div>
-//           </a>
-//         </li>`
-//         })
-//       .join('');
+///////////////////////////////////////////////
 
-//     cardList.insertAdjacentHTML('beforeend', markup);
-//     // addListenerLinks();
-//   });
-// }
+import fetchEventCards from './fetch-cards';
+import axios from 'axios';
+import renderCards from './../index'
+// import Notiflix, { Notify } from 'notiflix';
+import debounce from 'lodash.debounce';
 
 
 
 
-// let select = function () {
-//   let selectItem = document.querySelectorAll('.select__item');
-//   let selectCountry = document.querySelectorAll('.select-country');
 
-//   selectCountry.forEach(e => {
-//     e.addEventListener('click', selectToggle);
-//   });
+// refs.form.addEventListener('submit', onSearch);
 
-//   selectItem.forEach(e => {
-//     e.addEventListener('click', selectChoose);
-//   });
+// const searchCountry = e => {
+//   const searchName = input.value.trim();
 
-//   function selectToggle() {
-//     this.parentElement.classList.toggle('is-active');
-//   }
-//   function selectChoose() {
-//     let text = this.innerText;
-
-//     let select = this.closest('.select');
-//     let currentText = select.querySelector('.select-current-country');
-//     currentText.innerText = text;
-
-//     select.classList.remove('is-active');
-//     console.dir();
-//   }
+//   fetchCountries(searchName)
+//     .then(data => {
+//       countriesData(data);
+//     })
+//     .catch(() => {
+//       if (searchName !== '') {
+//         Notiflix.Notify.failure('Oops, there is no events with that name');
+//       }
+//     });
 // };
-// select();
+
+// input.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
+const form = document.querySelector('.search-form');
+const input = document.querySelector('.search-input');
+
+const DEBOUNCE_DELAY = 1000;
+
+input.addEventListener("input",debounce (onInputSerch,DEBOUNCE_DELAY))
+
+async function onInputSerch() {
+  let search = input.value.trim()
+  console.log(search);
+
+  try{
+    const respone = await fetchEventCards(search).then(events => renderCards(events))
+    console.log(respone);
+  }catch(error){
+    console.log(error);
+  }
+
+  
+
+}
+

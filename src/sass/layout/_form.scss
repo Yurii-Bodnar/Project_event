@@ -64,6 +64,7 @@
   }
 
   .select-country {
+    position: relative;
     display: flex;
     border: none;
     border-radius: 20px;
@@ -96,9 +97,9 @@
   .select-icon {
     align-items: center;
     display: flex;
-    flex-shrink: 0;
+
     justify-content: center;
-    width: 40px;
+    width: 45px;
     height: 40px;
     margin-left: auto;
     text-align: center;
@@ -124,6 +125,8 @@
   }
 
   .select-window {
+    z-index: 100;
+    position: absolute;
     display: none;
     height: 130px;
 
@@ -135,12 +138,9 @@
     padding: 5px 0px;
     color: #cccccc;
     overflow: auto;
+
     margin: 0;
     min-width: 280px;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
 
     @media screen and (min-width: 768px) {
       //   min-width: 336px;
