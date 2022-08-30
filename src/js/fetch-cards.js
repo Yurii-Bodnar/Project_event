@@ -16,7 +16,6 @@ export default async function fetchEventCards(name) {
     params: {
       page: page,
       keyword: name,
-      
     },
   };
   try {
