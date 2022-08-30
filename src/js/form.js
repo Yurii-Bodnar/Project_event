@@ -33,14 +33,27 @@ select();
 import fetchEventCards from './fetch-cards';
 import axios from 'axios';
 import Notiflix, { Notify } from 'notiflix';
+import debounce from 'lodash.debounce';
 
-let refs = {
-  form: document.querySelector('.search-form'),
-  input: document.querySelector('.search-input'),
+const form = document.querySelector('.search-form');
+const input = document.querySelector('.search-input');
+
+const DEBOUNCE_DELAY = 300;
+
+// refs.form.addEventListener('submit', onSearch);
+
+const searchCountry = e => {
+  const searchName = input.value.trim();
+
+  fetchCountries(searchName)
+    .then(data => {
+      countriesData(data);
+    })
+    .catch(() => {
+      if (searchName !== '') {
+        Notiflix.Notify.failure('Oops, there is no events with that name');
+      }
+    });
 };
 
-refs.form.addEventListener('submit', onSearch);
-
-function onSearch(e) {
-  e.preventDefault();
-}
+input.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
