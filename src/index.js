@@ -17,7 +17,7 @@ function initializeEvents(){
   fetchEventCards().then(events => renderCards(events) );
 }
 
-function renderCards(events) {
+export default function renderCards(events) {
     eventsData = events;
     // author = events.options.params._embedded.attractions.name;
 

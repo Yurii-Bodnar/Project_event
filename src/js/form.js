@@ -32,15 +32,49 @@ select();
 
 import fetchEventCards from './fetch-cards';
 import axios from 'axios';
-import Notiflix, { Notify } from 'notiflix';
+import renderCards from './../index'
+// import Notiflix, { Notify } from 'notiflix';
+import debounce from 'lodash.debounce';
 
-let refs = {
-  form: document.querySelector('.search-form'),
-  input: document.querySelector('.search-input'),
-};
 
-refs.form.addEventListener('submit', onSearch);
 
-function onSearch(e) {
-  e.preventDefault();
+
+
+// refs.form.addEventListener('submit', onSearch);
+
+// const searchCountry = e => {
+//   const searchName = input.value.trim();
+
+//   fetchCountries(searchName)
+//     .then(data => {
+//       countriesData(data);
+//     })
+//     .catch(() => {
+//       if (searchName !== '') {
+//         Notiflix.Notify.failure('Oops, there is no events with that name');
+//       }
+//     });
+// };
+
+// input.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
+const form = document.querySelector('.search-form');
+const input = document.querySelector('.search-input');
+
+const DEBOUNCE_DELAY = 1000;
+
+input.addEventListener("input",debounce (onInputSerch,DEBOUNCE_DELAY))
+
+async function onInputSerch() {
+  let search = input.value.trim()
+  console.log(search);
+
+  try{
+    const respone = await fetchEventCards(search).then(events => renderCards(events))
+    console.log(respone);
+  }catch(error){
+    console.log(error);
+  }
+
+  
+
 }
