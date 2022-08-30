@@ -36,12 +36,12 @@
   border-radius: 150px 0px;
   min-height: 952px;
 
-  @include media(mobile-only) {
+  @include media(mobile) {
     width: 280px;
     max-width: 480px;
-
     padding-top: 80px;
     padding-bottom: 100px;
+    transform: translate(-50%, -50%);
   }
 
   @include media(tablet) {
@@ -54,12 +54,12 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   @include media(desktop) {
     width: 1034px;
     max-width: 1280px;
-
     padding-top: 54px;
     padding-bottom: 40px;
     position: absolute;
@@ -353,4 +353,8 @@
     transform: translateZ(-800px) rotate3d(1, 1, 0, 90deg);
     opacity: 0;
   }
+}
+
+.txt {
+  min-height: 100px;
 }
