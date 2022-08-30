@@ -6,34 +6,24 @@ import './js/back-to-top';
 
 import './js/form';
 import './js/modal';
-// import cardById from './js/fetch-card-details';
+import toggleModal from './js/modal';
 
-
-
-
-
-const cardList = document.querySelector('.card-box');
-const modal = document.querySelector("[data-modal]");
-const closeModalBtn = document.querySelector("[data-modal-close]");
 let eventsData = [];
 
-
-closeModalBtn.addEventListener("click", toggleModal);
-
-function toggleModal() {
-  modal.classList.toggle("is-hidden");
-}
+const cardList = document.querySelector('.card-box');
+const byAuthorBtn = document.querySelector('.js-modal-author-btn');
 
 function renderCards() {
   fetchEventCards().then(events => {
-    console.log(events)
+    console.log(events);
     eventsData = events;
+    // author = events.options.params._embedded.attractions.name;
+
     const markup = events
-      .map(
-        event => {
-          //eventsData[event.id] = event;
-          //console.log(eventsData);
-          return `<li class="event-card" data-id="${event.id}">
+      .map(event => {
+        //eventsData[event.id] = event;
+        //console.log(eventsData);
+        return `<li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
             <div class="event-card__img-wrapper">
               <span class="event-card__border-elem"></span>
@@ -53,8 +43,8 @@ function renderCards() {
               <span>${event.dates.timezone}</span></p>
             </div>
           </a>
-        </li>`
-        })
+        </li>`;
+      })
       .join('');
 
     cardList.insertAdjacentHTML('beforeend', markup);
@@ -62,30 +52,27 @@ function renderCards() {
   });
 }
 
-
-
 renderCards();
 
-function addListenerLinks(){
-  const eventCards = document.querySelectorAll(".event-card")
+function addListenerLinks() {
+  const eventCards = document.querySelectorAll('.event-card');
   console.log(eventCards);
-  for(let eventCard of eventCards) {
-    eventCard.addEventListener("click", renderModal);
-  };
+  for (let eventCard of eventCards) {
+    eventCard.addEventListener('click', renderModal);
+  }
 }
 
-function renderModal(e){
+function renderModal(e) {
   e.preventDefault();
   toggleModal();
-  console.log(e.currentTarget)
+  console.log(e.currentTarget);
   const li = e.currentTarget;
-  const modalContainer = document.querySelector(".modal__container");
-  const eventId = li.getAttribute("data-id");
+  const modalContainer = document.querySelector('.modal__container');
+  const eventId = li.getAttribute('data-id');
   //const event = eventsData[eventId];
   const event = eventsData.filter(ev => ev.id == eventId)[0];
   console.log(event);
-    const murcupModal = 
-      `     
+  const murcupModal = `     
       <img
         class="ltl-img"
         src="${event.images[2].url}"
@@ -122,7 +109,7 @@ function renderModal(e){
           </li>
           <li class="modal__item">
             <h2 class="modal__title">WHO</h2>
-            <p class="modal__txt">${event._embedded.attractions[0].name}</p>
+            <p class="modal__txt js-author" >${event._embedded.attractions[0].name}</p>
           </li>
 
           <li class="modal__item">
@@ -162,18 +149,47 @@ function renderModal(e){
             </ul>
           </li>
         </ul>`;
-        
-        // modal.insertAdjacentHTML('beforeend', murcupModal);
-        modalContainer.innerHTML = murcupModal;
-        
-        
+
+  // modal.insertAdjacentHTML('beforeend', murcupModal);
+  modalContainer.innerHTML = murcupModal;
+  byAuthorBtn.addEventListener('click', fetchEventByAuthor);
 }
+// let authorNameArr = [];
+async function fetchEventByAuthor() {
+  toggleModal();
+  const author = document.querySelector('.js-author');
+  const eventAuthor = author.textContent;
 
-
-
-// function onOpenModal(e){
-    
-//     renderModal()
-
-// }
-
+  fetchEventCards()
+    .then(events =>
+      events.filter(event => event._embedded.attractions[0].name == eventAuthor)
+    )
+    .then(events =>
+      events
+        .map(event => {
+          return `<li class="event-card" data-id="${event.id}">
+          <a href="#" class="event-card__link" >
+            <div class="event-card__img-wrapper">
+              <span class="event-card__border-elem"></span>
+              <img
+                src="${event.images[0].url}"
+                alt=""
+                class="event-card__img"
+              />
+            </div>
+            <div class="event-card__descr">
+              <h2 class="event-card__title">${event.name}</h2>
+              <p class="event-card__date">${event.dates.start.localDate}</p>
+              <p class="event-card__location">
+               <svg class="event-card__location-icon" width="7" height="10">
+                    <use href="./images/location.svg"></use>
+             </svg>
+              <span>${event.dates.timezone}</span></p>
+            </div>
+          </a>
+        </li>`;
+        })
+        .join('')
+    )
+    .then(markup => (cardList.innerHTML = markup));
+}
