@@ -6,23 +6,18 @@ import './js/back-to-top';
 
 import './js/form';
 import './js/modal';
-// import cardById from './js/fetch-card-details';
+import toggleModal from './js/modal';
 
 
 
 
 
-const cardList = document.querySelector('.card-box');
-const modal = document.querySelector("[data-modal]");
-const closeModalBtn = document.querySelector("[data-modal-close]");
 let eventsData = [];
 
+const cardList = document.querySelector('.card-box');
 
-closeModalBtn.addEventListener("click", toggleModal);
 
-function toggleModal() {
-  modal.classList.toggle("is-hidden");
-}
+
 
 function renderCards() {
   fetchEventCards().then(events => {
@@ -171,9 +166,4 @@ function renderModal(e){
 
 
 
-// function onOpenModal(e){
-    
-//     renderModal()
-
-// }
 
