@@ -76,14 +76,20 @@ p {
     border-radius: 50px 0px;
     height: 151px;
     margin-top: 9px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    object-fit: cover;
 
     @media screen and (min-width: 768px) {
       height: 178px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     @media screen and (min-width: 1200px) {
       margin-top: 19px;
       height: 337px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
   }
 
@@ -146,7 +152,7 @@ p {
   }
   &__location-icon {
     fill: var(--primery-text-color);
-    width: 7px;
+    width: 10px;
     height: 10px;
   }
 }

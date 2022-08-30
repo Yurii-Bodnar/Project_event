@@ -19,13 +19,13 @@ img {
 body {
   @include media(mobile) {
     background-color: var(--modal-text-bodyBG-color);
-    background-image: url(../images/body-img-mb.jpg);
+    background-image: url(../images/mobile/1\ -\ home\ mobile.png);
     background-repeat: no-repeat;
     background-size: cover;
 
     background-position: center top;
     @include media(retina) {
-      background-image: url(../images/body-img-mb-2x.jpg);
+      background-image: url(../images/mobile/1\ -\ home\ mobile@2x.png);
     }
   }
   @include media(tablet) {
