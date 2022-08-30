@@ -168,7 +168,7 @@ async function fetchEventByAuthor() {
   const author = document.querySelector('.js-author');
   const eventAuthor = author.textContent;
 
-  const filteredEventsByAuthor = fetchEventCards()
+  fetchEventCards()
     .then(events =>
       events.filter(event => event._embedded.attractions[0].name == eventAuthor)
     )
