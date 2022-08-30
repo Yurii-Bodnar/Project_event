@@ -27,7 +27,8 @@
 
 .modal {
   background: #fff2fd;
-
+  margin-top: 500px;
+  margin-bottom: 700px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -59,6 +60,7 @@
 
   @include media(desktop) {
     width: 1034px;
+
     max-width: 1280px;
     padding-top: 54px;
     padding-bottom: 40px;
