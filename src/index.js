@@ -13,9 +13,11 @@ let eventsData = [];
 const cardList = document.querySelector('.card-box');
 const byAuthorBtn = document.querySelector('.js-modal-author-btn');
 
-function renderCards() {
-  fetchEventCards().then(events => {
-    console.log(events);
+function initializeEvents(){
+  fetchEventCards().then(events => renderCards(events) );
+}
+
+export default function renderCards(events) {
     eventsData = events;
     // author = events.options.params._embedded.attractions.name;
 
@@ -46,13 +48,9 @@ function renderCards() {
         </li>`;
       })
       .join('');
-
-    cardList.insertAdjacentHTML('beforeend', markup);
+    cardList.innerHTML = markup;
     addListenerLinks();
-  });
 }
-
-renderCards();
 
 function addListenerLinks() {
   const eventCards = document.querySelectorAll('.event-card');
@@ -164,32 +162,9 @@ async function fetchEventByAuthor() {
     .then(events =>
       events.filter(event => event._embedded.attractions[0].name == eventAuthor)
     )
-    .then(events =>
-      events
-        .map(event => {
-          return `<li class="event-card" data-id="${event.id}">
-          <a href="#" class="event-card__link" >
-            <div class="event-card__img-wrapper">
-              <span class="event-card__border-elem"></span>
-              <img
-                src="${event.images[0].url}"
-                alt=""
-                class="event-card__img"
-              />
-            </div>
-            <div class="event-card__descr">
-              <h2 class="event-card__title">${event.name}</h2>
-              <p class="event-card__date">${event.dates.start.localDate}</p>
-              <p class="event-card__location">
-               <svg class="event-card__location-icon" width="7" height="10">
-                    <use href="./images/location.svg"></use>
-             </svg>
-              <span>${event.dates.timezone}</span></p>
-            </div>
-          </a>
-        </li>`;
-        })
-        .join('')
-    )
-    .then(markup => (cardList.innerHTML = markup));
+    .then(events => renderCards(events)
+    );
 }
+
+
+initializeEvents();
