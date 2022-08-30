@@ -1,3 +1,5 @@
+/// Відериття вікна з країнами у другому інпуті
+
 let select = function () {
   let selectItem = document.querySelectorAll('.select__item');
   let selectCountry = document.querySelectorAll('.select-country');
@@ -25,3 +27,20 @@ let select = function () {
   }
 };
 select();
+
+///////////////////////////////////////////////
+
+import fetchEventCards from './fetch-cards';
+import axios from 'axios';
+import Notiflix, { Notify } from 'notiflix';
+
+let refs = {
+  form: document.querySelector('.search-form'),
+  input: document.querySelector('.search-input'),
+};
+
+refs.form.addEventListener('submit', onSearch);
+
+function onSearch(e) {
+  e.preventDefault();
+}
