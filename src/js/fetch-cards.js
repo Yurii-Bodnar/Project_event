@@ -5,18 +5,18 @@ import axios from 'axios';
 let page = 1;
 let size = 16;
 
-let keyword = "";
+let keyword = '';
+let countryCode = '';
 
 const baseUrl = 'https://app.ticketmaster.com/discovery/v2/events.json';
 const key = 'gq43zGRtwYd9WTdGGX7KlpGS3X1lGFUk';
 
 export default async function fetchEventCards() {
   try {
-    
     const eventsRes = await fetchEvents();
     console.log(eventsRes);
     if (eventsRes.page.totalElements === 0) {
-      return []
+      return [];
     }
     return eventsRes._embedded.events;
   } catch (error) {
@@ -32,12 +32,13 @@ async function fetchEvents() {
     params: {
       page: page,
       keyword: keyword,
+      countryCode: countryCode,
     },
   };
   try {
     const response = await axios(options);
     console.log(response.data);
-    localStorage.setItem("totalPage", response.data.page.totalElements)
+    localStorage.setItem('totalPage', response.data.page.totalElements);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -45,16 +46,17 @@ async function fetchEvents() {
   }
 }
 
-
 export function setPage(newPage) {
-  page=newPage
+  page = newPage;
 }
-
 
 export function setKeyword(newKeyword) {
-  keyword=newKeyword
+  keyword = newKeyword;
 }
 
+export function setCountry(newCountryCode) {
+  countryCode = newCountryCode;
+}
 
 function renderCards() {
   fetchEventCards().then(events => {
