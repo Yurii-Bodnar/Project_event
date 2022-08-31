@@ -30,11 +30,13 @@ select();
 
 ///////////////////////////////////////////////
 
-import fetchEventCards from './fetch-cards';
+import fetchEventCards, { setKeyword } from './fetch-cards';
 import axios from 'axios';
 import renderCards from './../index'
 // import Notiflix, { Notify } from 'notiflix';
 import debounce from 'lodash.debounce';
+import {setKeyword} from './fetch-cards'
+import { updatePagination } from './pagination';
 
 
 
@@ -68,9 +70,13 @@ async function onInputSerch() {
   let search = input.value.trim()
   console.log(search);
 
-  try{
-    const respone = await fetchEventCards(search).then(events => renderCards(events))
-    console.log(respone);
+  try {
+    setKeyword(search)
+    const respone = await fetchEventCards().then(events => {
+      updatePagination()
+      renderCards(events)
+    })
+
   }catch(error){
     console.log(error);
   }
