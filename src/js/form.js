@@ -50,14 +50,21 @@ import { updatePagination } from './pagination';
 const countryUl = document.querySelector('.select-window');
 // let selectItem = document.querySelectorAll('.select__item');
 const selectCountry = document.querySelectorAll('.select-country');
-const selectEl = document.querySelector("select")
+const selectEl = document.querySelector(".select")
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
+const body = document.querySelector("body")
+ let selectItem = document.querySelectorAll('.select__item');
 
 selectCountry.forEach(e => {
   e.addEventListener('click', selectToggle);
 });
 
+document.addEventListener("click", ((e) => {
+  if (!selectEl.contains(e.target)) {
+    selectEl.classList.remove("is-active");
+  }
+}))
 const countriesList = countries
   .map(
     country =>
@@ -67,15 +74,21 @@ const countriesList = countries
 
 
 function selectToggle(e) {
-  this.parentElement.classList.toggle('is-active');
+ this.parentElement.classList.toggle('is-active');
   countryUl.innerHTML = countriesList;
 
-  let selectItem = document.querySelectorAll('.select__item');
+// if (e.target !== selectItem) {
+//     selectEl.classList.toggle("is-active");
+//   }
+  
+ 
   selectItem.forEach(e => {
     e.addEventListener('click', selectChoose);
     console.log('listener');
   });
+   
 }
+
 
 function selectChoose(e) {
   e.preventDefault();
