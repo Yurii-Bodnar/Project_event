@@ -7,7 +7,7 @@ import './js/form';
 import './js/modal';
 import './js/bored';
 import toggleModal from './js/modal';
-import {setKeyword} from './js/fetch-cards'
+import { setKeyword } from './js/fetch-cards';
 import { updatePagination } from './js/pagination';
 
 let eventsData = [];
@@ -15,15 +15,11 @@ let eventsData = [];
 const cardList = document.querySelector('.card-box');
 const byAuthorBtn = document.querySelector('.js-modal-author-btn');
 
-
 export function initializeEvents() {
-  
   fetchEventCards().then(events => {
-
-    updatePagination()
-    renderCards(events)
+    updatePagination();
+    renderCards(events);
   });
-
 }
 export default function renderCards(events) {
   eventsData = events;
@@ -33,7 +29,8 @@ export default function renderCards(events) {
     .map(event => {
       //eventsData[event.id] = event;
       //console.log(eventsData);
-      return `<li class="event-card" data-id="${event.id}">
+      return `
+      <li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
             <div class="event-card__img-wrapper">
               <span class="event-card__border-elem"></span>
@@ -53,7 +50,8 @@ export default function renderCards(events) {
               <span>${event._embedded.venues[0].name}</span></p>
             </div>
           </a>
-        </li>`;
+        </li>
+       `;
     })
     .join('');
   cardList.innerHTML = markup;
@@ -111,11 +109,15 @@ function renderModal(e) {
           </li>
           <li class="modal__item">
             <h2 class="modal__title">WHERE</h2>
-            <p class="modal__txt">${event._embedded.venues[0].country.name} <br />${event._embedded.venues[0].name}</p>
+            <p class="modal__txt">${
+              event._embedded.venues[0].country.name
+            } <br />${event._embedded.venues[0].name}</p>
           </li>
           <li class="modal__item">
             <h2 class="modal__title">WHO</h2>
-            <p class="modal__txt js-author" >${event._embedded.attractions[0].name}</p>
+            <p class="modal__txt js-author" >${
+              event._embedded.attractions[0].name
+            }</p>
           </li>
 
           <li class="modal__item">
@@ -135,22 +137,20 @@ async function fetchEventByAuthor() {
   toggleModal();
   const author = document.querySelector('.js-author');
   const eventAuthor = author.textContent;
-  setKeyword(eventAuthor)
-  fetchEventCards()
-    .then(events => {
-      updatePagination();
-      renderCards(events)
-    })
+  setKeyword(eventAuthor);
+  fetchEventCards().then(events => {
+    updatePagination();
+    renderCards(events);
+  });
 }
 
-
 initializeEvents();
-
-// function getPrices() {
-
-// }
-/*
-<li class="buy__item">
+const buyList = document.querySelector('.buy__list');
+function getPrices(event) {
+  if (event.products == undefined) {
+    return `НИМА, АНУ ПІШОВ ДОНАТИТИ ЗСУ `;
+  } else {
+    return `<li class="buy__item">
                 <ul class="tickets__list">
                   <li class="tickets__item">
                     <svg width="24px" height="20px" viewBox="0 0 29 21" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
@@ -179,9 +179,7 @@ initializeEvents();
                 </ul>
               </li>
               <li class="buy__item">
-                <a class="buy__link link" href="${/*event.products[0].url1}">BUY TICKETS</a>
-              </li>
-
-
-*/
-
+                <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
+              </li>`;
+  }
+}

@@ -10,11 +10,9 @@ function showBored() {
   boredEl.classList.add("is-hidden")
 }
 
-
-
   timerId = setTimeout(() => {
   showBored()
-}, 2000)
+}, 6000)
 
 
 

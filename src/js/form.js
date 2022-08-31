@@ -54,40 +54,54 @@ import { setKeyword } from './fetch-cards';
 import { updatePagination } from './pagination';
 
 const selectItem = document.querySelectorAll('.select__item');
+import { setCountry } from './fetch-cards';
+import { updatePagination } from './pagination';
+
+const countryUl = document.querySelector('.select-window');
 const selectCountry = document.querySelectorAll('.select-country');
 
 selectCountry.forEach(e => {
   e.addEventListener('click', selectToggle);
 });
 
-selectItem.forEach(e => {
-  e.addEventListener('click', selectChoose);
-});
-
-// const countriesList = countries
-//   .map(
-//     country =>
-//       ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
-//   )
-//   .join('');
+const countriesList = countries
+  .map(
+    country =>
+      ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
+  )
+  .join('');
 
 function selectToggle(e) {
   this.parentElement.classList.toggle('is-active');
-  // countryUl.innerHTML = countriesList;
+  countryUl.innerHTML = countriesList;
+
+  selectItem = document.querySelectorAll('.select__item');
+  selectItem.forEach(e => {
+    e.addEventListener('click', selectChoose);
+    console.log('listener');
+  });
 }
 
 function selectChoose(e) {
   e.preventDefault();
   let text = e.currentTarget.innerText;
+  let countryCode = e.target.dataset.value;
+  console.log(countryCode);
   console.log(text);
-  // let select = this.closest('.select');
-  // let currentText = select.querySelector('.select-current-country');
-  // currentText.innerText = text;
-  // select.classList.remove('is-active');
-  // console.dir();
+  let select = e.currentTarget.closest('.select');
+  let currentText = select.querySelector('.select-current-country');
+  currentText.innerText = text;
+  select.classList.remove('is-active');
+  fetchEventByCountries(countryCode);
 }
 
-// console.log(countryUl);
+function fetchEventByCountries(newCountryCode) {
+  setCountry(newCountryCode);
+  fetchEventCards().then(events => {
+    updatePagination();
+    renderCards(events);
+  });
+}
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
@@ -95,7 +109,9 @@ const input = document.querySelector('.search-input');
 const DEBOUNCE_DELAY = 1000;
 
 input.addEventListener('input', debounce(onInputSerch, DEBOUNCE_DELAY));
-
+form.addEventListener('submit', event => {
+  event.preventDefault();
+});
 async function onInputSerch() {
   let search = input.value.trim();
   console.log(search);

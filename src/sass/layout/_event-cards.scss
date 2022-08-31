@@ -27,6 +27,8 @@ p {
   align-items: baseline;
   column-gap: 20px;
 
+  // animation: slide-in-elliptic-bottom-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
   @media screen and (min-width: 768px) {
     row-gap: 32px;
     column-gap: 32px;
@@ -41,7 +43,13 @@ p {
 .event-card {
   flex: auto;
   flex-basis: calc((100% - 20px) / 2);
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    // transform: scale(1.1, 1.15);
+    animation: pulsate-fwd 1.5s ease-in-out infinite both;
+  }
 
   @media screen and (min-width: 768px) {
     flex-basis: calc((100% - 3 * 32px) / 4);
@@ -102,6 +110,7 @@ p {
 
     z-index: -1;
     border: 1px solid rgba(220, 86, 197, 0.3);
+    box-shadow: 5px 8px 32px 7px rgba(220, 86, 197, 0.65);
     border-radius: 50px 0px;
     @media screen and (min-width: 768px) {
       left: 32px;
@@ -154,5 +163,41 @@ p {
     fill: var(--primery-text-color);
     width: 10px;
     height: 10px;
+  }
+}
+
+
+// animation
+
+@keyframes pulsate-fwd {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+
+@keyframes slide-in-elliptic-bottom-fwd {
+  0% {
+    -webkit-transform: translateY(600px) rotateX(30deg) scale(0);
+            transform: translateY(600px) rotateX(30deg) scale(0);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) rotateX(0) scale(1);
+            transform: translateY(0) rotateX(0) scale(1);
+    -webkit-transform-origin: 50% -1400px;
+            transform-origin: 50% -1400px;
+    opacity: 1;
   }
 }
