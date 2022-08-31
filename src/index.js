@@ -94,12 +94,7 @@ function renderModal(e) {
       </div>
       <div class="paers__second">
         <ul class="modal__list list">
-          <li class="modal__item">
-            <h2 class="modal__title">INFO</h2>
-            <p class="modal__txt txt">
-              ${event.info}
-            </p>
-          </li>
+         ${getInfo(event)}
           <li class="modal__item">
             <h2 class="modal__title">WHEN</h2>
             <p class="modal__txt">
@@ -145,7 +140,7 @@ async function fetchEventByAuthor() {
 }
 
 initializeEvents();
-const buyList = document.querySelector('.buy__list');
+
 function getPrices(event) {
   if (event.products == undefined) {
     return `НИМА, АНУ ПІШОВ ДОНАТИТИ ЗСУ `;
@@ -181,5 +176,18 @@ function getPrices(event) {
               <li class="buy__item">
                 <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
               </li>`;
+  }
+}
+
+function getInfo(event) {
+  if(event.info === undefined){
+    return event.textContent = ""
+  }else{
+    return ` <li class="modal__item">
+    <h2 class="modal__title">INFO</h2>
+    <p class="modal__txt txt">
+      ${event.info}
+    </p>
+    </li> `
   }
 }

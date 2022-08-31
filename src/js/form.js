@@ -57,6 +57,7 @@ const countryUl = document.querySelector('.select-window');
 
 let selectItem = document.querySelectorAll('.select__item');
 const selectCountry = document.querySelectorAll('.select-country');
+const selectEl = document.querySelector("select")
 
 selectCountry.forEach(e => {
   e.addEventListener('click', selectToggle);
@@ -68,6 +69,7 @@ const countriesList = countries
       ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
   )
   .join('');
+
 
 function selectToggle(e) {
   this.parentElement.classList.toggle('is-active');
@@ -82,16 +84,24 @@ function selectToggle(e) {
 
 function selectChoose(e) {
   e.preventDefault();
-  let text = e.currentTarget.innerText;
-  let countryCode = e.target.dataset.value;
-  console.log(countryCode);
-  console.log(text);
-  let select = e.currentTarget.closest('.select');
-  let currentText = select.querySelector('.select-current-country');
-  currentText.innerText = text;
-  select.classList.remove('is-active');
-  fetchEventByCountries(countryCode);
+     clouseChoose ()
+
+    let text = e.currentTarget.innerText;
+    let countryCode = e.target.dataset.value;
+    console.log(countryCode);
+    console.log(text);
+    let select = e.currentTarget.closest('.select');
+    let currentText = select.querySelector('.select-current-country');
+    currentText.innerText = text;
+    select.classList.remove('is-active');
+    fetchEventByCountries(countryCode);
+
 }
+// document.onclick = function clouseChoose (e){
+//   if(e.target.class = 'is-active'){
+//     selectEl.classList.remove('is-active')
+//   }
+// }
 
 function fetchEventByCountries(newCountryCode) {
   setCountry(newCountryCode);
