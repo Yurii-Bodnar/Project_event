@@ -7,7 +7,7 @@ import './js/form';
 import './js/modal';
 import './js/bored';
 import toggleModal from './js/modal';
-import {setKeyword} from './js/fetch-cards'
+import { setKeyword } from './js/fetch-cards';
 import { updatePagination } from './js/pagination';
 
 let eventsData = [];
@@ -15,15 +15,11 @@ let eventsData = [];
 const cardList = document.querySelector('.card-box');
 const byAuthorBtn = document.querySelector('.js-modal-author-btn');
 
-
 export function initializeEvents() {
-  
   fetchEventCards().then(events => {
-
-    updatePagination()
-    renderCards(events)
+    updatePagination();
+    renderCards(events);
   });
-
 }
 export default function renderCards(events) {
   eventsData = events;
@@ -121,7 +117,7 @@ function renderModal(e) {
           <li class="modal__item">
             <h2 class="modal__title buy__title">PRICES</h2>
             <ul class="buy__list list">
-              ${getPrices(event)}
+              {getPrices(event)}
             </ul>
           </li>
         </ul>`;
@@ -135,14 +131,12 @@ async function fetchEventByAuthor() {
   toggleModal();
   const author = document.querySelector('.js-author');
   const eventAuthor = author.textContent;
-  setKeyword(eventAuthor)
-  fetchEventCards()
-    .then(events => {
-      updatePagination();
-      renderCards(events)
-    })
+  setKeyword(eventAuthor);
+  fetchEventCards().then(events => {
+    updatePagination();
+    renderCards(events);
+  });
 }
-
 
 initializeEvents();
 
@@ -184,4 +178,3 @@ initializeEvents();
 
 
 */
-
