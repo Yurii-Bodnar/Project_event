@@ -1,40 +1,93 @@
-/// Відериття вікна з країнами у другому інпуті
+import countries from '../templates/countries.json';
 
-let select = function () {
-  let selectItem = document.querySelectorAll('.select__item');
-  let selectCountry = document.querySelectorAll('.select-country');
+// let select = function () {
+//   let selectItem = document.querySelectorAll('.select__item');
+//   let selectCountry = document.querySelectorAll('.select-country');
+//   const countryUl = document.querySelector('.select-window');
 
-  selectCountry.forEach(e => {
-    e.addEventListener('click', selectToggle);
-  });
+//   const countriesList = countries
+//     .map(
+//       country =>
+//         ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
+//     )
+//     .join('');
 
-  selectItem.forEach(e => {
-    e.addEventListener('click', selectChoose);
-  });
+//   selectCountry.forEach(e => {
+//     e.addEventListener('click', selectToggle);
+//   });
 
-  function selectToggle() {
-    this.parentElement.classList.toggle('is-active');
-  }
-  function selectChoose() {
-    let text = this.innerText;
+//   selectItem.forEach(e => {
+//     e.addEventListener('click', selectChoose);
+//   });
 
-    let select = this.closest('.select');
-    let currentText = select.querySelector('.select-current-country');
-    currentText.innerText = text;
+//   async function selectToggle() {
+//     this.parentElement.classList.toggle('is-active');
+//     countryUl.innerHTML = countriesList;
+//   }
+//   function selectChoose(e) {
+//     console.log(e);
+//     let text = this.innerText;
 
-    select.classList.remove('is-active');
-    console.dir();
-  }
-};
-select();
+//     let select = this.closest('.select');
+//     let currentText = select.querySelector('.select-current-country');
+//     currentText.innerText = text;
+
+//     select.classList.remove('is-active');
+//     console.dir();
+//   }
+// };
+// select();
 
 ///////////////////////////////////////////////
 
-import fetchEventCards from './fetch-cards';
+import fetchEventCards, { setKeyword } from './fetch-cards';
 import axios from 'axios';
 import renderCards from './../index';
+
+import fetchEventCards from './fetch-cards';
+// import axios from 'axios';
+import renderCards from './../index';
+
 // import Notiflix, { Notify } from 'notiflix';
 import debounce from 'lodash.debounce';
+import { setKeyword } from './fetch-cards';
+import { updatePagination } from './pagination';
+
+const selectItem = document.querySelectorAll('.select__item');
+const selectCountry = document.querySelectorAll('.select-country');
+
+selectCountry.forEach(e => {
+  e.addEventListener('click', selectToggle);
+});
+
+selectItem.forEach(e => {
+  e.addEventListener('click', selectChoose);
+});
+
+// const countriesList = countries
+//   .map(
+//     country =>
+//       ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
+//   )
+//   .join('');
+
+function selectToggle(e) {
+  this.parentElement.classList.toggle('is-active');
+  // countryUl.innerHTML = countriesList;
+}
+
+function selectChoose(e) {
+  e.preventDefault();
+  let text = e.currentTarget.innerText;
+  console.log(text);
+  // let select = this.closest('.select');
+  // let currentText = select.querySelector('.select-current-country');
+  // currentText.innerText = text;
+  // select.classList.remove('is-active');
+  // console.dir();
+}
+
+// console.log(countryUl);
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
@@ -53,6 +106,10 @@ async function onInputSerch() {
     );
     console.log(respone);
   } catch (error) {
-    console.log(error);
+    setKeyword(search);
+    const respone = await fetchEventCards().then(events => {
+      updatePagination();
+      renderCards(events);
+    });
   }
 }

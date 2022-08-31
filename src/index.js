@@ -1,31 +1,39 @@
-import fetchEventCards from './js/fetch-cards';
+import fetchEventCards, { setKeyword } from './js/fetch-cards';
 import './js/pagination';
 import './js/preloader';
 
 import './js/back-to-top';
-
 import './js/form';
 import './js/modal';
+import './js/bored';
 import toggleModal from './js/modal';
+import {setKeyword} from './js/fetch-cards'
+import { updatePagination } from './js/pagination';
 
 let eventsData = [];
 
 const cardList = document.querySelector('.card-box');
 const byAuthorBtn = document.querySelector('.js-modal-author-btn');
 
-function initializeEvents(){
-  fetchEventCards().then(events => renderCards(events) );
+
+export function initializeEvents() {
+  
+  fetchEventCards().then(events => {
+
+    updatePagination()
+    renderCards(events)
+  });
+
 }
-
 export default function renderCards(events) {
-    eventsData = events;
-    // author = events.options.params._embedded.attractions.name;
+  eventsData = events;
+  // author = events.options.params._embedded.attractions.name;
 
-    const markup = events
-      .map(event => {
-        //eventsData[event.id] = event;
-        //console.log(eventsData);
-        return `<li class="event-card" data-id="${event.id}">
+  const markup = events
+    .map(event => {
+      //eventsData[event.id] = event;
+      //console.log(eventsData);
+      return `<li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
             <div class="event-card__img-wrapper">
               <span class="event-card__border-elem"></span>
@@ -46,10 +54,10 @@ export default function renderCards(events) {
             </div>
           </a>
         </li>`;
-      })
-      .join('');
-    cardList.innerHTML = markup;
-    addListenerLinks();
+    })
+    .join('');
+  cardList.innerHTML = markup;
+  addListenerLinks();
 }
 
 function addListenerLinks() {
@@ -113,7 +121,36 @@ function renderModal(e) {
           <li class="modal__item">
             <h2 class="modal__title buy__title">PRICES</h2>
             <ul class="buy__list list">
-              <li class="buy__item">
+              ${getPrices(event)}
+            </ul>
+          </li>
+        </ul>`;
+
+  // modal.insertAdjacentHTML('beforeend', murcupModal);
+  modalContainer.innerHTML = murcupModal;
+  byAuthorBtn.addEventListener('click', fetchEventByAuthor);
+}
+// let authorNameArr = [];
+async function fetchEventByAuthor() {
+  toggleModal();
+  const author = document.querySelector('.js-author');
+  const eventAuthor = author.textContent;
+  setKeyword(eventAuthor)
+  fetchEventCards()
+    .then(events => {
+      updatePagination();
+      renderCards(events)
+    })
+}
+
+
+initializeEvents();
+
+// function getPrices() {
+
+// }
+/*
+<li class="buy__item">
                 <ul class="tickets__list">
                   <li class="tickets__item">
                     <svg width="24px" height="20px" viewBox="0 0 29 21" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
@@ -142,29 +179,9 @@ function renderModal(e) {
                 </ul>
               </li>
               <li class="buy__item">
-                <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
+                <a class="buy__link link" href="${/*event.products[0].url1}">BUY TICKETS</a>
               </li>
-            </ul>
-          </li>
-        </ul>`;
-
-  // modal.insertAdjacentHTML('beforeend', murcupModal);
-  modalContainer.innerHTML = murcupModal;
-  byAuthorBtn.addEventListener('click', fetchEventByAuthor);
-}
-// let authorNameArr = [];
-async function fetchEventByAuthor() {
-  toggleModal();
-  const author = document.querySelector('.js-author');
-  const eventAuthor = author.textContent;
-
-  fetchEventCards()
-    .then(events =>
-      events.filter(event => event._embedded.attractions[0].name == eventAuthor)
-    )
-    .then(events => renderCards(events)
-    );
-}
 
 
-initializeEvents();
+*/
+
