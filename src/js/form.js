@@ -50,12 +50,14 @@ import renderCards from './../index';
 
 // import Notiflix, { Notify } from 'notiflix';
 import debounce from 'lodash.debounce';
+import { setKeyword } from './fetch-cards';
+import { updatePagination } from './pagination';
+
+const selectItem = document.querySelectorAll('.select__item');
 import { setCountry } from './fetch-cards';
 import { updatePagination } from './pagination';
 
 const countryUl = document.querySelector('.select-window');
-
-let selectItem = document.querySelectorAll('.select__item');
 const selectCountry = document.querySelectorAll('.select-country');
 const selectEl = document.querySelector("select")
 
@@ -125,12 +127,15 @@ async function onInputSerch() {
   console.log(search);
 
   try {
+    const respone = await fetchEventCards(search).then(events =>
+      renderCards(events)
+    );
+    console.log(respone);
+  } catch (error) {
     setKeyword(search);
     const respone = await fetchEventCards().then(events => {
       updatePagination();
       renderCards(events);
     });
-  } catch (error) {
-    console.log(error);
   }
 }

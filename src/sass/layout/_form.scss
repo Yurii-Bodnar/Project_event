@@ -20,6 +20,10 @@
     margin-bottom: 130px;
   }
 }
+.search-form input:hover,
+.search-form input:focus {
+  background: rgba(7, 5, 5, 0.443);
+}
 
 .search-form input {
   min-width: 280px;
@@ -32,6 +36,11 @@
   border: none;
   outline: none;
   resize: none;
+
+  &:hover {
+    box-shadow: 0px 0px 3px 3px #dc56c5;
+    transition: box-shadow 2000ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
 
   @media screen and (min-width: 768px) {
     min-width: 336px;
@@ -54,6 +63,12 @@
   right: 32px;
   fill: #939393;
   align-items: center;
+  transform: scale(1);
+  &:hover {
+    transform: scale(1.5);
+    transition: transform 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    fill: #dc56c5;
+  }
 }
 
 .select {
@@ -61,6 +76,23 @@
 
   &.is-active .select-window {
     display: block;
+  }
+
+  &.is-active .select-window:hover {
+    transition: all 2000ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  .select-window {
+    animation: rotate-in-2-ccw 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    @keyframes rotate-in-2-ccw {
+      0% {
+        transform: rotate(50deg);
+        opacity: 0;
+      }
+      100% {
+        transform: rotate(0);
+        opacity: 1;
+      }
+    }
   }
 
   .select-country {
@@ -74,6 +106,16 @@
     color: #939393;
     min-width: 280px;
     height: 40px;
+
+    &:hover {
+      box-shadow: 0px 0px 3px 3px #dc56c5;
+      transition: box-shadow 2000ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    &:hover,
+    &:focus {
+      background: rgba(7, 5, 5, 0.443);
+    }
 
     @media screen and (min-width: 768px) {
       min-width: 336px;
@@ -141,6 +183,12 @@
 
     margin: 0;
     min-width: 280px;
+
+    &:hover {
+      box-shadow: 0px 0px 3px 3px #dc56c5;
+      transition: box-shadow 2000ms cubic-bezier(0.075, 0.82, 0.165, 1);
+      background: rgba(7, 5, 5, 0.443);
+    }
 
     @media screen and (min-width: 768px) {
       //   min-width: 336px;
