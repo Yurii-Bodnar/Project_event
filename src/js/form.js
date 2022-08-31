@@ -3,6 +3,14 @@ import countries from '../templates/countries.json';
 // let select = function () {
 //   let selectItem = document.querySelectorAll('.select__item');
 //   let selectCountry = document.querySelectorAll('.select-country');
+//   const countryUl = document.querySelector('.select-window');
+
+//   const countriesList = countries
+//     .map(
+//       country =>
+//         ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
+//     )
+//     .join('');
 
 //   selectCountry.forEach(e => {
 //     e.addEventListener('click', selectToggle);
@@ -12,10 +20,12 @@ import countries from '../templates/countries.json';
 //     e.addEventListener('click', selectChoose);
 //   });
 
-//   function selectToggle() {
+//   async function selectToggle() {
 //     this.parentElement.classList.toggle('is-active');
+//     countryUl.innerHTML = countriesList;
 //   }
-//   function selectChoose() {
+//   function selectChoose(e) {
+//     console.log(e);
 //     let text = this.innerText;
 
 //     let select = this.closest('.select');
@@ -31,65 +41,46 @@ import countries from '../templates/countries.json';
 ///////////////////////////////////////////////
 
 import fetchEventCards from './fetch-cards';
-import axios from 'axios';
+// import axios from 'axios';
 import renderCards from './../index';
 // import Notiflix, { Notify } from 'notiflix';
 import debounce from 'lodash.debounce';
 
-// refs.form.addEventListener('submit', onSearch);
+// const countryUl = document.querySelector('.select-window');
 
-// const searchCountry = e => {
-//   const searchName = input.value.trim();
+const selectItem = document.querySelectorAll('.select__item');
+const selectCountry = document.querySelectorAll('.select-country');
 
-//   fetchCountries(searchName)
-//     .then(data => {
-//       countriesData(data);
-//     })
-//     .catch(() => {
-//       if (searchName !== '') {
-//         Notiflix.Notify.failure('Oops, there is no events with that name');
-//       }
-//     });
-// };
+selectCountry.forEach(e => {
+  e.addEventListener('click', selectToggle);
+});
 
-// input.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
-let select = function () {
-  const countryUl = document.querySelector('.select-window');
+selectItem.forEach(e => {
+  e.addEventListener('click', selectChoose);
+});
 
-  const selectItem = document.querySelectorAll('.select__item');
-  const selectCountry = document.querySelectorAll('.select-country');
+// const countriesList = countries
+//   .map(
+//     country =>
+//       ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
+//   )
+//   .join('');
 
-  const countriesList = countries
-    .map(
-      country =>
-        ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
-    )
-    .join('');
+function selectToggle(e) {
+  this.parentElement.classList.toggle('is-active');
+  // countryUl.innerHTML = countriesList;
+}
 
-  selectCountry.forEach(e => {
-    e.addEventListener('click', selectToggle);
-  });
-
-  function selectToggle() {
-    this.parentElement.classList.toggle('is-active');
-    countryUl.innerHTML = countriesList;
-  }
-
-  selectItem.forEach(e => {
-    e.addEventListener('click', selectChoose);
-  });
-
-  function selectChoose(e) {
-    console.log(e);
-    let text = this.innerText;
-    let select = this.closest('.select');
-    let currentText = select.querySelector('.select-current-country');
-    currentText.innerText = text;
-
-    select.classList.remove('is-active');
-    console.dir();
-  }
-};
+function selectChoose(e) {
+  e.preventDefault();
+  let text = e.currentTarget.innerText;
+  console.log(text);
+  // let select = this.closest('.select');
+  // let currentText = select.querySelector('.select-current-country');
+  // currentText.innerText = text;
+  // select.classList.remove('is-active');
+  // console.dir();
+}
 
 // console.log(countryUl);
 
