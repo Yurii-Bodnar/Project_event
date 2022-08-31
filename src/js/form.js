@@ -41,23 +41,18 @@ import countries from '../templates/countries.json';
 ///////////////////////////////////////////////
 
 import fetchEventCards, { setKeyword } from './fetch-cards';
-import axios from 'axios';
 import renderCards from './../index';
-
-import fetchEventCards from './fetch-cards';
-// import axios from 'axios';
-import renderCards from './../index';
-
-// import Notiflix, { Notify } from 'notiflix';
 import debounce from 'lodash.debounce';
 import { setCountry } from './fetch-cards';
 import { updatePagination } from './pagination';
 
-const countryUl = document.querySelector('.select-window');
 
-let selectItem = document.querySelectorAll('.select__item');
+const countryUl = document.querySelector('.select-window');
+// let selectItem = document.querySelectorAll('.select__item');
 const selectCountry = document.querySelectorAll('.select-country');
 const selectEl = document.querySelector("select")
+const form = document.querySelector('.search-form');
+const input = document.querySelector('.search-input');
 
 selectCountry.forEach(e => {
   e.addEventListener('click', selectToggle);
@@ -75,7 +70,7 @@ function selectToggle(e) {
   this.parentElement.classList.toggle('is-active');
   countryUl.innerHTML = countriesList;
 
-  selectItem = document.querySelectorAll('.select__item');
+  let selectItem = document.querySelectorAll('.select__item');
   selectItem.forEach(e => {
     e.addEventListener('click', selectChoose);
     console.log('listener');
@@ -84,8 +79,7 @@ function selectToggle(e) {
 
 function selectChoose(e) {
   e.preventDefault();
-     clouseChoose ()
-
+    
     let text = e.currentTarget.innerText;
     let countryCode = e.target.dataset.value;
     console.log(countryCode);
@@ -111,8 +105,7 @@ function fetchEventByCountries(newCountryCode) {
   });
 }
 
-const form = document.querySelector('.search-form');
-const input = document.querySelector('.search-input');
+
 
 const DEBOUNCE_DELAY = 1000;
 
