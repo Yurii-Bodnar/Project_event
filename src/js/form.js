@@ -1,45 +1,4 @@
 import countries from '../templates/countries.json';
-
-// let select = function () {
-//   let selectItem = document.querySelectorAll('.select__item');
-//   let selectCountry = document.querySelectorAll('.select-country');
-//   const countryUl = document.querySelector('.select-window');
-
-//   const countriesList = countries
-//     .map(
-//       country =>
-//         ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
-//     )
-//     .join('');
-
-//   selectCountry.forEach(e => {
-//     e.addEventListener('click', selectToggle);
-//   });
-
-//   selectItem.forEach(e => {
-//     e.addEventListener('click', selectChoose);
-//   });
-
-//   async function selectToggle() {
-//     this.parentElement.classList.toggle('is-active');
-//     countryUl.innerHTML = countriesList;
-//   }
-//   function selectChoose(e) {
-//     console.log(e);
-//     let text = this.innerText;
-
-//     let select = this.closest('.select');
-//     let currentText = select.querySelector('.select-current-country');
-//     currentText.innerText = text;
-
-//     select.classList.remove('is-active');
-//     console.dir();
-//   }
-// };
-// select();
-
-///////////////////////////////////////////////
-
 import fetchEventCards, { setKeyword } from './fetch-cards';
 import renderCards from './../index';
 import debounce from 'lodash.debounce';
@@ -48,7 +7,6 @@ import { updatePagination } from './pagination';
 
 
 const countryUl = document.querySelector('.select-window');
-// let selectItem = document.querySelectorAll('.select__item');
 const selectCountry = document.querySelectorAll('.select-country');
 const selectEl = document.querySelector(".select")
 const form = document.querySelector('.search-form');
@@ -60,11 +18,7 @@ selectCountry.forEach(e => {
   e.addEventListener('click', selectToggle);
 });
 
-document.addEventListener("click", ((e) => {
-  if (!selectEl.contains(e.target)) {
-    selectEl.classList.remove("is-active");
-  }
-}))
+
 const countriesList = countries
   .map(
     country =>
@@ -80,7 +34,7 @@ function selectToggle(e) {
 // if (e.target !== selectItem) {
 //     selectEl.classList.toggle("is-active");
 //   }
-  
+let selectItem = document.querySelectorAll('.select__item');
  
   selectItem.forEach(e => {
     e.addEventListener('click', selectChoose);
@@ -89,6 +43,11 @@ function selectToggle(e) {
    
 }
 
+document.addEventListener("click", ((e) => {
+  if (!selectEl.contains(e.target)) {
+    selectEl.classList.remove("is-active");
+  }
+}))
 
 function selectChoose(e) {
   e.preventDefault();
