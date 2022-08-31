@@ -33,7 +33,8 @@ export default function renderCards(events) {
     .map(event => {
       //eventsData[event.id] = event;
       //console.log(eventsData);
-      return `<li class="event-card" data-id="${event.id}">
+      return `
+      <li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
             <div class="event-card__img-wrapper">
               <span class="event-card__border-elem"></span>
@@ -53,7 +54,8 @@ export default function renderCards(events) {
               <span>${event._embedded.venues[0].name}</span></p>
             </div>
           </a>
-        </li>`;
+        </li>
+       `;
     })
     .join('');
   cardList.innerHTML = markup;
