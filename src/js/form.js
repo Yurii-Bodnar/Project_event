@@ -54,29 +54,33 @@ import debounce from 'lodash.debounce';
 import {setKeyword} from './fetch-cards'
 import { updatePagination } from './pagination';
 
-// const countryUl = document.querySelector('.select-window');
+const countryUl = document.querySelector('.select-window');
 
-const selectItem = document.querySelectorAll('.select__item');
+let selectItem = document.querySelectorAll('.select__item');
 const selectCountry = document.querySelectorAll('.select-country');
 
 selectCountry.forEach(e => {
   e.addEventListener('click', selectToggle);
 });
 
-selectItem.forEach(e => {
-  e.addEventListener('click', selectChoose);
-});
 
-// const countriesList = countries
-//   .map(
-//     country =>
-//       ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
-//   )
-//   .join('');
+
+const countriesList = countries
+  .map(
+    country =>
+      ` <li class="select__item" data-value="${country.countryCode}">${country.name}</li>`
+  )
+  .join('');
 
 function selectToggle(e) {
   this.parentElement.classList.toggle('is-active');
-  // countryUl.innerHTML = countriesList;
+  countryUl.innerHTML = countriesList;
+
+  selectItem = document.querySelectorAll('.select__item');
+  selectItem.forEach(e => {
+  e.addEventListener('click', selectChoose);
+  console.log('listener');
+});
 }
 
 function selectChoose(e) {
