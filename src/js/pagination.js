@@ -1,6 +1,11 @@
 const Pagination = require('tui-pagination'); /* CommonJS */
 
 const container = document.getElementById('tui-pagination-container');
+import renderCards, { initializeEvents } from '../index'
+import fetchEventCards from './fetch-cards';
+import { setPage } from './fetch-cards'
+import {setKeyword} from './fetch-cards'
+
 
 const options = {
   // below default value of options
@@ -32,6 +37,27 @@ const options = {
 
 // const pagination = new Pagination(container, options);
 
-const instance = new Pagination(container, options);
+const pagination = new Pagination(container, options);
 
 // instance.getCurrentPage();
+
+
+ pagination.on('afterMove', loadMorePages );
+
+async function loadMorePages(event) {
+  const currentPage = event.page;
+  console.log(currentPage);
+  setPage(currentPage)
+  const response = await fetchEventCards().then(event => {
+    renderCards(event)
+  })
+}
+
+
+export function updatePagination() {
+ let totalItems = localStorage.getItem("totalPage")
+  if (totalItems > 800) totalItems = 800;
+  options.totalItems  = totalItems  
+  const pagination = new Pagination(container, options);
+   pagination.on('afterMove', loadMorePages );
+}

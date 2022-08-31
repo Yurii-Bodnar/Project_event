@@ -40,11 +40,19 @@ import countries from '../templates/countries.json';
 
 ///////////////////////////////////////////////
 
+
+import fetchEventCards, { setKeyword } from './fetch-cards';
+import axios from 'axios';
+import renderCards from './../index'
+
 import fetchEventCards from './fetch-cards';
 // import axios from 'axios';
 import renderCards from './../index';
+
 // import Notiflix, { Notify } from 'notiflix';
 import debounce from 'lodash.debounce';
+import {setKeyword} from './fetch-cards'
+import { updatePagination } from './pagination';
 
 // const countryUl = document.querySelector('.select-window');
 
@@ -96,11 +104,14 @@ async function onInputSerch() {
   console.log(search);
 
   try {
-    const respone = await fetchEventCards(search).then(events =>
+
+    setKeyword(search)
+    const respone = await fetchEventCards().then(events => {
+      updatePagination()
       renderCards(events)
-    );
-    console.log(respone);
-  } catch (error) {
+    })
+
+  }catch(error){
     console.log(error);
   }
 }
