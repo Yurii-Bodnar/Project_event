@@ -1,7 +1,9 @@
 .bored {
-  height: 200px;
-  width: 400px;
-  background: #fff2fd;
+  background: black;
+
+  width: 180px;
+  height: 230px;
+  padding: 0;
 
   border: 4px solid #4c00fe;
   position: sticky;
@@ -9,9 +11,28 @@
   top: 0;
   bottom: 0;
   opacity: 1;
+  align-items: center;
 
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: linear 1s;
+  border-radius: 100px 0px;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0.19) 0%,
+    rgba(14, 14, 14, 0.8) 20%
+  );
+  @include media(tablet) {
+    width: 300px;
+    height: 250px;
+    padding: 0;
+    border: 2px solid #4c00fe;
+  }
+  @include media(desktop) {
+    height: 300px;
+    width: 400px;
+    padding-bottom: 50px;
+    padding-top: 70px;
+  }
 }
 
 .bored.is-hidden {
@@ -21,35 +42,104 @@
 }
 
 .bored__title {
-  font-family: 'Montserrat';
+  font-family: var(--main-font);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 24px;
   line-height: 29px;
   text-align: center;
   text-shadow: 5px 14px 13px rgba(220, 86, 197, 0.99);
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 55px;
 
   color: #dc56c5;
+  animation: blinker 2s linear infinite;
+  @include media(tablet) {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 55px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  @include media(desktop) {
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0;
+    margin-bottom: 20px;
+  }
 }
 
-.bored__link {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;
+// .bored__link {
 
-  color: #4c00fe;
-}
+// }
 
 .img {
   border-radius: 50%;
+  border: solid 2px #ffff;
+
+  width: 50px;
+  height: 50px;
+  @include media(tablet) {
+    width: 70px;
+    height: 70px;
+  }
+  @include media(desktop) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .bored__flex {
   display: flex;
-  flex-direction: row;
+
   align-items: center;
-  gap: 20px;
+
+  flex-direction: column;
+  gap: 5px;
   justify-content: center;
+  @include media(tablet) {
+    flex-direction: column;
+    gap: 5px;
+  }
+  @include media(desktop) {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+.bored__btn {
+  font-family: var(--main-font);
+  font-style: normal;
+  font-weight: 500;
+
+  color: #ffff;
+  background: var(--button-color);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 9px;
+  font-size: 14px;
+  line-height: 17px;
+
+  &:hover {
+    background-color: #dc56c5;
+    box-shadow: 5px 8px 32px 7px rgba(220, 86, 197, 0.65);
+  }
+  @include media(tablet) {
+    padding: 5px 9px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  @include media(desktop) {
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 10px 19px;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
