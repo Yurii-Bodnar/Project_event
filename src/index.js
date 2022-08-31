@@ -139,12 +139,12 @@ async function fetchEventByAuthor() {
 }
 
 initializeEvents();
-
-// function getPrices() {
-
-// }
-/*
-<li class="buy__item">
+const buyList = document.querySelector('.buy__list');
+function getPrices(event) {
+  if (event.products == undefined) {
+    return `НИМА, АНУ ПІШОВ ДОНАТИТИ ЗСУ `;
+  } else {
+    return `<li class="buy__item">
                 <ul class="tickets__list">
                   <li class="tickets__item">
                     <svg width="24px" height="20px" viewBox="0 0 29 21" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
@@ -173,8 +173,7 @@ initializeEvents();
                 </ul>
               </li>
               <li class="buy__item">
-                <a class="buy__link link" href="${/*event.products[0].url1}">BUY TICKETS</a>
-              </li>
-
-
-*/
+                <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
+              </li>`;
+  }
+}
