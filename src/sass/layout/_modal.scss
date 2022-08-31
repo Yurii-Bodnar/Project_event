@@ -27,8 +27,8 @@
 
 .modal {
   background: #fff2fd;
-  margin-top: 500px;
-  margin-bottom: 700px;
+  // margin-top: 200px;
+  // margin-bottom: 700px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -40,6 +40,8 @@
   @include media(mobile) {
     width: 280px;
     max-width: 480px;
+    margin-top: 250px;
+    margin-bottom: 200px;
     padding-top: 80px;
     padding-bottom: 100px;
     transform: translate(-50%, -50%);
@@ -48,7 +50,8 @@
   @include media(tablet) {
     width: 704px;
     max-width: 768px;
-
+    margin-top: 200px;
+    margin-bottom: 100px;
     padding-top: 32px;
     padding-bottom: 40px;
     border-radius: 300px 0px;
@@ -62,6 +65,8 @@
     width: 1034px;
 
     max-width: 1280px;
+    margin-top: 200px;
+    margin-bottom: 100px;
     padding-top: 54px;
     padding-bottom: 40px;
     position: absolute;
