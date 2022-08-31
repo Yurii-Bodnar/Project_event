@@ -5,6 +5,7 @@ import './js/preloader';
 import './js/back-to-top';
 import './js/form';
 import './js/modal';
+import './js/bored';
 import toggleModal from './js/modal';
 
 let eventsData = [];
