@@ -107,17 +107,21 @@ function renderModal(e) {
           </li>
           <li class="modal__item">
             <h2 class="modal__title">WHERE</h2>
-            <p class="modal__txt">${event._embedded.venues[0].country.name} <br />${event._embedded.venues[0].name}</p>
+            <p class="modal__txt">${
+              event._embedded.venues[0].country.name
+            } <br />${event._embedded.venues[0].name}</p>
           </li>
           <li class="modal__item">
             <h2 class="modal__title">WHO</h2>
-            <p class="modal__txt js-author" >${event._embedded.attractions[0].name}</p>
+            <p class="modal__txt js-author" >${
+              event._embedded.attractions[0].name
+            }</p>
           </li>
 
           <li class="modal__item">
             <h2 class="modal__title buy__title">PRICES</h2>
             <ul class="buy__list list">
-              {getPrices(event)}
+              ${getPrices(event)}
             </ul>
           </li>
         </ul>`;

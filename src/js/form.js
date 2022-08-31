@@ -40,10 +40,9 @@ import countries from '../templates/countries.json';
 
 ///////////////////////////////////////////////
 
-
 import fetchEventCards, { setKeyword } from './fetch-cards';
 import axios from 'axios';
-import renderCards from './../index'
+import renderCards from './../index';
 
 import fetchEventCards from './fetch-cards';
 // import axios from 'axios';
@@ -51,7 +50,7 @@ import renderCards from './../index';
 
 // import Notiflix, { Notify } from 'notiflix';
 import debounce from 'lodash.debounce';
-import {setKeyword} from './fetch-cards'
+import { setCountry } from './fetch-cards';
 import { updatePagination } from './pagination';
 
 const countryUl = document.querySelector('.select-window');
@@ -62,8 +61,6 @@ const selectCountry = document.querySelectorAll('.select-country');
 selectCountry.forEach(e => {
   e.addEventListener('click', selectToggle);
 });
-
-
 
 const countriesList = countries
   .map(
@@ -78,23 +75,31 @@ function selectToggle(e) {
 
   selectItem = document.querySelectorAll('.select__item');
   selectItem.forEach(e => {
-  e.addEventListener('click', selectChoose);
-  console.log('listener');
-});
+    e.addEventListener('click', selectChoose);
+    console.log('listener');
+  });
 }
 
 function selectChoose(e) {
   e.preventDefault();
   let text = e.currentTarget.innerText;
+  let countryCode = e.target.dataset.value;
+  console.log(countryCode);
   console.log(text);
-  // let select = this.closest('.select');
-  // let currentText = select.querySelector('.select-current-country');
-  // currentText.innerText = text;
-  // select.classList.remove('is-active');
-  // console.dir();
+  let select = e.currentTarget.closest('.select');
+  let currentText = select.querySelector('.select-current-country');
+  currentText.innerText = text;
+  select.classList.remove('is-active');
+  fetchEventByCountries(countryCode);
 }
 
-// console.log(countryUl);
+function fetchEventByCountries(newCountryCode) {
+  setCountry(newCountryCode);
+  fetchEventCards().then(events => {
+    updatePagination();
+    renderCards(events);
+  });
+}
 
 const form = document.querySelector('.search-form');
 const input = document.querySelector('.search-input');
@@ -102,20 +107,20 @@ const input = document.querySelector('.search-input');
 const DEBOUNCE_DELAY = 1000;
 
 input.addEventListener('input', debounce(onInputSerch, DEBOUNCE_DELAY));
-
+form.addEventListener('submit', event => {
+  event.preventDefault();
+});
 async function onInputSerch() {
   let search = input.value.trim();
   console.log(search);
 
   try {
-
-    setKeyword(search)
+    setKeyword(search);
     const respone = await fetchEventCards().then(events => {
-      updatePagination()
-      renderCards(events)
-    })
-
-  }catch(error){
+      updatePagination();
+      renderCards(events);
+    });
+  } catch (error) {
     console.log(error);
   }
 }
