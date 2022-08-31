@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-
 // const cardList = document.querySelector('.card-box');
 
 let page = 1;
 let size = 16;
+
 let keyword = "";
+
 const baseUrl = 'https://app.ticketmaster.com/discovery/v2/events.json';
 const key = 'gq43zGRtwYd9WTdGGX7KlpGS3X1lGFUk';
 
@@ -44,6 +45,7 @@ async function fetchEvents() {
   }
 }
 
+
 export function setPage(newPage) {
   page=newPage
 }
@@ -54,17 +56,15 @@ export function setKeyword(newKeyword) {
 }
 
 
-
 function renderCards() {
   fetchEventCards().then(events => {
-    console.log(events)
+    console.log(events);
     eventsData = events;
     const markup = events
-      .map(
-        event => {
-          //eventsData[event.id] = event;
-          //console.log(eventsData);
-          return `<li class="event-card" data-id="${event.id}">
+      .map(event => {
+        //eventsData[event.id] = event;
+        //console.log(eventsData);
+        return `<li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
             <div class="event-card__img-wrapper">
               <span class="event-card__border-elem"></span>
@@ -84,8 +84,8 @@ function renderCards() {
               <span>${event.dates.timezone}</span></p>
             </div>
           </a>
-        </li>`
-        })
+        </li>`;
+      })
       .join('');
 
     cardList.insertAdjacentHTML('beforeend', markup);
@@ -101,5 +101,5 @@ function renderCards() {
 //   countryCode = form.searchQuery.value;
 // fetchEventCards();
 //   renderCards();
-  
+
 // }
