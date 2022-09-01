@@ -27,8 +27,6 @@ p {
   align-items: baseline;
   column-gap: 20px;
 
-  // animation: slide-in-elliptic-bottom-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-
   @media screen and (min-width: 768px) {
     row-gap: 32px;
     column-gap: 32px;

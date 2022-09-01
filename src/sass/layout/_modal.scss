@@ -10,25 +10,17 @@
   backdrop-filter: blur(3px);
 
   opacity: 1;
-  // transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1);
-  // animation: swirl-in-fwd 0.6s ease-out both;
-
   animation: slit-in-diagonal-1 0.45s ease-out both;
 
   &.is-hidden {
     opacity: 0;
     pointer-events: none;
-
-    // transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1);
-    // animation: swirl-out-bck 0.6s ease-in both;
     animation: slit-out-diagonal-1 0.5s ease-in both;
   }
 }
 
 .modal {
   background: #fff2fd;
-  // margin-top: 200px;
-  // margin-bottom: 700px;
   position: absolute;
   top: 50%;
   left: 50%;

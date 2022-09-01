@@ -14,7 +14,6 @@ const key = 'gq43zGRtwYd9WTdGGX7KlpGS3X1lGFUk';
 export default async function fetchEventCards() {
   try {
     const eventsRes = await fetchEvents();
-    console.log(eventsRes);
     if (eventsRes.page.totalElements === 0) {
       return [];
     }
@@ -37,7 +36,6 @@ async function fetchEvents() {
   };
   try {
     const response = await axios(options);
-    console.log(response.data);
     localStorage.setItem('totalPage', response.data.page.totalElements);
     return response.data;
   } catch (error) {
@@ -60,12 +58,9 @@ export function setCountry(newCountryCode) {
 
 function renderCards() {
   fetchEventCards().then(events => {
-    console.log(events);
     eventsData = events;
     const markup = events
       .map(event => {
-        //eventsData[event.id] = event;
-        //console.log(eventsData);
         return `<li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
             <div class="event-card__img-wrapper">
@@ -94,14 +89,3 @@ function renderCards() {
     addListenerLinks();
   });
 }
-// const form = document.querySelector(".search-form")
-
-// form.addEventListener("submit", onFormSubmit)
-
-// function onFormSubmit(e) {
-//   e.preventDefault();
-//   countryCode = form.searchQuery.value;
-// fetchEventCards();
-//   renderCards();
-
-// }

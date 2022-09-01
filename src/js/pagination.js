@@ -35,18 +35,12 @@ const options = {
   },
 };
 
-// const pagination = new Pagination(container, options);
 
 const pagination = new Pagination(container, options);
-
-// instance.getCurrentPage();
-
-
  pagination.on('afterMove', loadMorePages );
 
 async function loadMorePages(event) {
   const currentPage = event.page;
-  console.log(currentPage);
   setPage(currentPage)
   const response = await fetchEventCards().then(event => {
     renderCards(event)

@@ -23,12 +23,8 @@ export function initializeEvents() {
 }
 export default function renderCards(events) {
   eventsData = events;
-  // author = events.options.params._embedded.attractions.name;
-
   const markup = events
     .map(event => {
-      //eventsData[event.id] = event;
-      //console.log(eventsData);
       return `
       <li class="event-card" data-id="${event.id}">
           <a href="#" class="event-card__link" >
@@ -60,7 +56,6 @@ export default function renderCards(events) {
 
 function addListenerLinks() {
   const eventCards = document.querySelectorAll('.event-card');
-  console.log(eventCards);
   for (let eventCard of eventCards) {
     eventCard.addEventListener('click', renderModal);
   }
@@ -69,13 +64,10 @@ function addListenerLinks() {
 function renderModal(e) {
   e.preventDefault();
   toggleModal();
-  console.log(e.currentTarget);
   const li = e.currentTarget;
   const modalContainer = document.querySelector('.modal__container');
   const eventId = li.getAttribute('data-id');
-  //const event = eventsData[eventId];
   const event = eventsData.filter(ev => ev.id == eventId)[0];
-  console.log(event);
   const murcupModal = `     
       <img
         class="ltl-img"
@@ -122,12 +114,9 @@ function renderModal(e) {
             </ul>
           </li>
         </ul>`;
-
-  // modal.insertAdjacentHTML('beforeend', murcupModal);
   modalContainer.innerHTML = murcupModal;
   byAuthorBtn.addEventListener('click', fetchEventByAuthor);
 }
-// let authorNameArr = [];
 async function fetchEventByAuthor() {
   toggleModal();
   const author = document.querySelector('.js-author');
@@ -161,33 +150,20 @@ function getPrices(event) {
                 <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
               </li>
 
-              <li class="buy__item">
-                <ul class="tickets__list">
-                  <li class="tickets__item">
-                   <svg width="24px" height="20px" viewBox="0 0 29 21" fill="#0E0E0E" xmlns="http://www.w3.org/2000/svg">
-<path d="M3.222.833H0v19.334h3.222V.833ZM11.327.833H8.104v19.334h3.223V.833ZM16.209.833h-3.222v19.334h3.222V.833ZM29 .833h-4.785v19.334H29V.833ZM6.444.833H4.882v19.334h1.562V.833ZM19.333.833h-1.562v19.334h1.562V.833ZM22.555.833h-1.562v19.334h1.563V.833Z" fill="#0E0E0E"/>
-</svg>
-                  </li>
-                  <li class="tickets__item">
-                    <p class="modal__txt">VIP 1000-1500 UAH</p>
-                  </li>
-                </ul>
-              </li>
-              <li class="buy__item">
-                <a class="buy__link link" href="${event.products[0].url}">BUY TICKETS</a>
+ 
               </li>`;
   }
 }
 
 function getInfo(event) {
-  if(event.info === undefined){
-    return event.textContent = ""
-  }else{
+  if (event.info === undefined) {
+    return (event.textContent = '');
+  } else {
     return ` <li class="modal__item">
     <h2 class="modal__title">INFO</h2>
     <p class="modal__txt txt">
       ${event.info}
     </p>
-    </li> `
+    </li> `;
   }
 }

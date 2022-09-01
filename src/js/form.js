@@ -30,15 +30,9 @@ const countriesList = countries
 function selectToggle(e) {
  this.parentElement.classList.toggle('is-active');
   countryUl.innerHTML = countriesList;
-
-// if (e.target !== selectItem) {
-//     selectEl.classList.toggle("is-active");
-//   }
 let selectItem = document.querySelectorAll('.select__item');
- 
   selectItem.forEach(e => {
     e.addEventListener('click', selectChoose);
-    console.log('listener');
   });
    
 }
@@ -54,8 +48,6 @@ function selectChoose(e) {
     
     let text = e.currentTarget.innerText;
     let countryCode = e.target.dataset.value;
-    console.log(countryCode);
-    console.log(text);
     let select = e.currentTarget.closest('.select');
     let currentText = select.querySelector('.select-current-country');
     currentText.innerText = text;
@@ -63,11 +55,6 @@ function selectChoose(e) {
     fetchEventByCountries(countryCode);
 
 }
-// document.onclick = function clouseChoose (e){
-//   if(e.target.class = 'is-active'){
-//     selectEl.classList.remove('is-active')
-//   }
-// }
 
 function fetchEventByCountries(newCountryCode) {
   setCountry(newCountryCode);
@@ -87,7 +74,6 @@ form.addEventListener('submit', event => {
 });
 async function onInputSerch() {
   let search = input.value.trim();
-  console.log(search);
 
   try {
     setKeyword(search);
