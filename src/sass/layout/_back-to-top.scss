@@ -7,8 +7,7 @@
     border-color: transparent;
     border-radius: 50%;
     background-color: var(--secondary-text-color);
-  
-    
+      
 
     &:hover,
     &:focus {
@@ -43,9 +42,7 @@
       border-left: 5px solid var(--primery-text-color);
     }
   
-    @include media(mobile-only) {
-      bottom: 145px;
-    }
+
   }
   
   .btn-hidden {
