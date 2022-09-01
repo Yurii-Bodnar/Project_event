@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // const cardList = document.querySelector('.card-box');
 
-let page = 1;
+let page = 0;
 let size = 16;
 
 let keyword = '';
