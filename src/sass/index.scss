@@ -1,0 +1,16 @@
+@import './utils/variables';
+@import './vendors/mixin-media';
+
+@import './base/common';
+@import './base/container';
+
+@import './layout/header';
+@import './layout/form';
+@import './layout/event-cards';
+
+@import './layout/pagination';
+@import './layout/footer';
+@import './layout/modal';
+@import './layout/preloader';
+@import './layout/back-to-top';
+@import './layout/bored.scss';

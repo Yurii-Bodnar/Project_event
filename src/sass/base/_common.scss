@@ -1,0 +1,51 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  @include media(mobile) {
+    background-color: var(--modal-text-bodyBG-color);
+    background-image: url(../images/mobile/1\ -\ home\ mobile.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    background-position: center top;
+    @include media(retina) {
+      background-image: url(../images/mobile/1\ -\ home\ mobile@2x.png);
+    }
+  }
+  @include media(tablet) {
+    background: no-repeat url(../images/tablet/1\ -\ home\ tablet.png);
+    background-position: center top;
+    background-size: cover;
+
+    @include media(retina) {
+      background-image: url(../images/tablet/1\ -\ home\ tablet@2x.png);
+    }
+  }
+
+  @include media(desktop) {
+    background-color: #212121;
+    background: no-repeat url(../images/desktop/1\ -\ home.png);
+    background-position: center top;
+    background-size: cover;
+
+    @include media(retina) {
+      background-image: url(../images/desktop/1\ -\ home@2x.png);
+    }
+  }
+}
